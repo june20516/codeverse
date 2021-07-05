@@ -38,7 +38,7 @@ external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: true
 relative_link: false
@@ -105,3 +105,6 @@ theme: flexy
 deploy:
   type: git
   repo: https://github.com/june20516/june20516.github.io.git
+  branch: master
+  message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+
