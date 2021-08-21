@@ -1,3 +1,6 @@
 [submodule "themes/flexy"]
 	path = themes/flexy
 	url = https://github.com/june20516/flexy.git
+[submodule "themes/utone"]
+	path = themes/utone
+	url = https://github.com/june20516/hexo-theme-utone.git
