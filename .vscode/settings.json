@@ -1,0 +1,8 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {},
+    "eslint.codeActionsOnSave.rules": null,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  }
+  
