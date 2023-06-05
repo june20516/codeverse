@@ -1,28 +1,22 @@
-import { PostType } from '@/interfaces/PostType';
-import { getAllPosts } from '@/lib/api';
+import { PostSummary } from '@/interfaces/PostType';
+import { getAllPostList } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
-import Image from 'next/image'
+import Image from 'next/image';
+import Link from 'next/link';
 
-// const Home: NextPage<{ posts: PostType[] }> = ({ posts }) => {
 const Home: NextPage = () => {
-  const posts = getAllPosts(['slug', 'title', 'date', 'author']);
+  const posts: PostSummary[] = getAllPostList();
   return (
     <ul>
       {posts.map((post, index) => (
-        <li key={index}>{post.title} - {post.author}</li>
+        <li key={index}>
+          <Link href={`posts/${post.slug}`}>
+            {post.title} - {post.author}
+          </Link>
+        </li>
       ))}
     </ul>
   );
 };
 
-// export async function getStaticProps() {
-//   const posts = getAllPosts(['slug', 'title', 'date']);
-
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
-
-export default Home;   
+export default Home;

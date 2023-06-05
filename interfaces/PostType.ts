@@ -1,5 +1,13 @@
-export interface PostType {
+export interface PostSummary {
   title: string;
-  content: string;
   author: string;
+  date: string;
+  slug: string;
+}
+
+export interface Post extends PostSummary {
+  content: string;
+  description?: string;
+  lastmod?: string;
+  tags?: string[];
 }
