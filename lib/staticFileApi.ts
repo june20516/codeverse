@@ -31,13 +31,7 @@ export function getPostBySlug(slug: string): Post {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  const item = {
-    slug,
-    content,
-    ...data,
-  } as Post;
-
-  return item;
+  return { slug, meta: data, content } as Post;
 }
 
 export function getAllPostList() {
@@ -47,7 +41,7 @@ export function getAllPostList() {
   AllPostList.push(
     ...slugs
       .map(slug => getPostBySlug(slug))
-      .sort((post1, post2) => (post1.date > post2.date ? -1 : 1)),
+      .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1)),
   );
   return AllPostList;
 }
