@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "server": "next build && npx http-server out",
-    "deploy": "rm -rf node_modules/.cache && next build && touch out/.nojekyll && git subtree push --prefix out gh-page main;",
+    "deploy": "rm -rf node_modules/.cache && next build && touch out/.nojekyll && git add ./out && git commit -m \"[publish]$(date)\" && git subtree push --prefix out gh-page main;",
     "deployed-pull": "git subtree pull --prefix out gh-page main;"
   },
   "dependencies": {
