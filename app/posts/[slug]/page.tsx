@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <meta name="twitter:image" content={meta.cardImage} />
       </Head>
       <article>
-        <div className="text-4xl font-bold text-center p-10 mb-3 sticky top-0 text-red-600 bg-gray-200">
+        <div className="text-4xl font-bold text-center p-10 mb-3 sticky top-0 text-green-800 bg-gray-200">
           {post.meta.title}
         </div>
         <div className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
