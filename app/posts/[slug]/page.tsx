@@ -2,6 +2,7 @@ import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 import markdownToHtml from '@/lib/markdownToHTML';
 import './styles.css';
 import Head from 'next/head';
+import MarkdwonContainer from './markdownContainer';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {
@@ -14,6 +15,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   const content = await markdownToHtml(post.content || '');
   const meta = post.meta;
+
   return (
     <>
       <Head>
@@ -39,7 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="text-4xl font-bold text-center p-10 mb-3 sticky top-0 text-green-800 bg-gray-200">
           {post.meta.title}
         </div>
-        <div className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
+        <MarkdwonContainer content={content} />
       </article>
     </>
   );

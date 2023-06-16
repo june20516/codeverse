@@ -5,4 +5,14 @@ const nextConfig = {
   // distDir: 'dist', // Optional: Change the output directory `out` -> `dist`
 };
 
-module.exports = nextConfig;
+const withPlugins = require('next-compose-plugins');
+const withTM = require('next-transpile-modules')(['remark-prism']);
+const withPostCss = require('postcss')(require('./postcss.config.js'));
+
+module.exports = {
+  ...nextConfig,
+  ...withPlugins([
+    [withTM, {}],
+    [withPostCss, {}],
+  ]),
+};
