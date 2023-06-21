@@ -81,5 +81,3 @@ into this HTML, which includes the proper elements and class names.
 ## Deploy Your Own
 
 View the [**source code**](https://github.com/leerob/nextjs-prism-markdown) and deploy your own. You can add new Markdown files to `docs/` and see them live instantly!
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?c=1&s=https://github.com/leerob/nextjs-prism-markdown)
