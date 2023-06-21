@@ -1,6 +1,7 @@
 import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 import markdownToHtml from '@/lib/markdownToHTML';
 import './styles.css';
+import '@/styles/prism-duotone-dark.css';
 import Head from 'next/head';
 
 export async function generateStaticParams() {
