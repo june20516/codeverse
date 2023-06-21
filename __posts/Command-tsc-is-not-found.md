@@ -1,6 +1,5 @@
 ---
-title: post template
-description: Command 'tsc' is not found
+title: Command 'tsc' is not found
 date: 2021/10/1 0:0:0
 tags: NestJS Node error tsc typescript
 ---

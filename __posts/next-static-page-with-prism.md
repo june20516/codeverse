@@ -1,6 +1,7 @@
 ---
-title: 'Prism with Next.js'
+title: '[test post]Prism with Next.js'
 description: 'Example using Prism / Markdown with Next.js including switching syntax highlighting themes.'
+date: 2023/06/14
 ---
 
 # Using Prism with Next.js
