@@ -1,5 +1,74 @@
 /* @import '@/styles/markdown-css-github.css'; */
 
-/* .markdown-body {
-  @apply bg-gray-200;
-} */
+.markdown-body {
+  & h1 {
+    @apply text-4xl font-bold py-5;
+    &::before {
+      content: '#';
+      @apply mr-3 self-start;
+    }
+  }
+  & h2 {
+    @apply text-3xl font-bold py-5;
+    &::before {
+      content: '##';
+      @apply mr-3 self-start;
+    }
+  }
+  & h3 {
+    @apply text-2xl font-bold py-5;
+    &::before {
+      content: '###';
+      @apply mr-3 self-start;
+    }
+  }
+  & h4 {
+    @apply text-xl font-bold py-5;
+    &::before {
+      content: '####';
+      @apply mr-3 self-start;
+    }
+  }
+  & h5 {
+    @apply text-xl font-bold py-5;
+    &::before {
+      content: '#####';
+      @apply mr-3 self-start;
+    }
+  }
+  & p {
+    @apply pb-5 indent-3;
+  }
+
+  & code {
+    @apply bg-background-primary-200 text-primary-700 rounded-md px-1;
+  }
+  & blockquote {
+    @apply bg-background-secondary-300 flex items-center p-5 text-primary-800 mb-5;
+    &::before {
+      content: '〝';
+      @apply text-2xl mr-3 self-start;
+    }
+    & p {
+      @apply italic text-lg p-0 indent-0;
+    }
+  }
+  & pre {
+    @apply mb-4;
+  }
+  & a {
+    @apply text-secondary-800;
+  }
+  & ul {
+    padding-left: 2rem;
+    list-style-type: circle;
+  }
+
+  & ol {
+    padding-left: 2rem;
+    list-style-type: decimal;
+  }
+  & li::marker {
+    @apply text-primary-700;
+  }
+}

@@ -17,11 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <header className="flex items-center px-8">
-          <div className="relative w-14 aspect-square">
-            <Image src={'assets/images/codeverse_icon.png'} fill alt="icon of codeverse" />
-          </div>
-          <Link href="/">
+        <header className="px-8 flex items-center">
+          <Link href="/" className="flex items-center">
+            <div className="relative w-10 aspect-square mr-4">
+              <Image src={'assets/images/codeverse_icon.png'} fill alt="icon of codeverse" />
+            </div>
             <h1 className="text-3xl font-bold">Codeverse</h1>
           </Link>
         </header>
