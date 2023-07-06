@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import './globals.css';
-import { Inter } from 'next/font/google';
-import LeftSideBar from './components/LeftSideBar';
-
-const inter = Inter({ subsets: ['latin'] });
+import LeftSideBar from './layouts/LeftSideBar';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,8 +16,11 @@ export const sideBarMenu = [
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <header className="flex items-center px-8">
+          <div className="relative w-14 aspect-square">
+            <Image src={'assets/images/codeverse_icon.png'} fill alt="icon of codeverse" />
+          </div>
           <Link href="/">
             <h1 className="text-3xl font-bold">Codeverse</h1>
           </Link>

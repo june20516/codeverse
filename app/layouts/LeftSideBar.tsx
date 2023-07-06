@@ -5,9 +5,7 @@ export default function LeftSideBar({ menuList }: { menuList: { name: string; hr
     <aside>
       <ul>
         {menuList.map((menu, index) => (
-          <li
-            key={index}
-            className="even:backdrop-brightness-90  hover:backdrop-brightness-50 hover:text-white">
+          <li key={index} className="hover:backdrop-brightness-90">
             <Link className="block w-full h-full p-5 text-lg" href={menu.href}>
               {menu.name}
             </Link>

@@ -1,6 +1,6 @@
 ---
 title: Command 'tsc' is not found
-date: 2021/10/1 0:0:0
+date: 2021/10/01
 tags: NestJS Node error tsc typescript
 ---
 

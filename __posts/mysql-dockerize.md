@@ -18,7 +18,7 @@ tags: MYSQL_ALLOW_EMPTY_PASSWORD MYSQL_RANDOM_ROOT_PASSWORD MYSQL_ROOT_PASSWORD 
 
 먼저 mysql 이미지를 가져옵니다.
 
-```sehll
+```shell
 $ docker pull mysql
 
 Using default tag: latest
@@ -89,7 +89,7 @@ ddb780457980   mysql      "docker-entrypoint.s…"   4 minutes ago   Up 4 minute
 
 터미널 창을 하나 더 켜고, 아래 명령어로 방금 띄운 mysql 컨테이너에 접속해 볼 수 있습니다. 지정한 비밀번호로 mysql 클라이언트도 잘 접속이 됩니다.
 
-```sehll
+```shell
 $ docker exec -it musing_dewdney bash
 
 root@ddb780457980:/# mysql -uroot -p1234
