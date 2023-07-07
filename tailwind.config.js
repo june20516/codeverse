@@ -11,6 +11,7 @@ module.exports = {
 
   theme: {
     colors: {
+      ...colors,
       primary: colors.indigo,
       secondary: colors.purple,
       warning: colors.yellow,

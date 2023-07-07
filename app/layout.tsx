@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export const sideBarMenu = [
-  { name: 'Posts', href: '/' },
+  { name: 'Posts', href: '/posts' },
   { name: 'About Me', href: '/about' },
 ];
 

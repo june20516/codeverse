@@ -37,9 +37,8 @@
     }
   }
   & p {
-    @apply pb-5 indent-3;
+    @apply pt-5 indent-3;
   }
-
   & code {
     @apply bg-background-primary-200 text-primary-700 rounded-md px-1;
   }
@@ -54,16 +53,15 @@
     }
   }
   & pre {
-    @apply mb-4;
+    @apply mt-4;
   }
   & a {
-    @apply text-secondary-800;
+    @apply text-secondary-800 hover:text-opacity-70;
   }
   & ul {
     padding-left: 2rem;
     list-style-type: circle;
   }
-
   & ol {
     padding-left: 2rem;
     list-style-type: decimal;
