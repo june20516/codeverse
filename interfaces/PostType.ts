@@ -1,4 +1,5 @@
 export interface PostMeta {
+  thumbnail: string;
   title: string;
   author: string;
   date: string;

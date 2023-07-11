@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 import markdownToHtml from '@/lib/markdownToHTML';
 import './styles.css';
 import '@/styles/prism-duotone-dark.css';
 import Head from 'next/head';
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {
@@ -29,17 +31,22 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <meta property="og:site_name" content={meta.title} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
-        <meta property="og:image" content={meta.cardImage} />
+        <meta property="og:image" content={meta.thumbnail} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@vercel" />
+        <meta name="twitter:site" content="codeverse" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.cardImage} />
+        <meta name="twitter:image" content={meta.thumbnail} />
       </Head>
       <article>
-        <div className="text-4xl font-bold text-center p-10 mb-3 sticky top-0 bg-background-primary-50">
+        <div className="text-4xl font-bold text-center p-10 mb-3 sticky top-0 bg-white max-h-96 min-h-fit">
           {post.meta.title}
+          <p className="text-base text-right italic text-secondary-400"> - {meta.date}</p>
         </div>
+        <div className="w-full bg-background-primary-100 p-4">
+          <p className="font-semibold text-secondary-600">{meta.description}</p>
+        </div>
+        <img src={`/${meta.thumbnail}`} className="w-[90%] mx-auto" alt="thumbnail" />
         <div className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
       </article>
     </>

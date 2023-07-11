@@ -1,10 +1,10 @@
 ---
 title: mysql dockerize(1) - 도커로 mysql container 띄우기
 date: 2021/11/07
+description: 내 로컬 환경은 소중하니까
 tags: MYSQL_ALLOW_EMPTY_PASSWORD MYSQL_RANDOM_ROOT_PASSWORD MYSQL_ROOT_PASSWORD container docker mysql
+thumbnail: assets/images/posts/mysql-dockerize.jpeg
 ---
-
-> 내 로컬 환경은 소중하니까
 
 최근 작업 중 DB에 스키마 변경을 가하면 DB랑 로컬 개발 환경이 함께 쭉 드러누워버리는 일이 자주 발생합니다. 로컬에서 돌리고 있던 mysql을 격리시켜버리기로 결심했습니다.
 
