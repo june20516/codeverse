@@ -38,8 +38,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.thumbnail} />
       </Head>
-      <article>
-        <div className="text-4xl font-bold text-center p-10 mb-3 sticky top-0 bg-white max-h-96 min-h-fit">
+      <article className="space-y-6">
+        <div className="text-4xl font-bold text-center p-10 sticky top-0 bg-white max-h-96 min-h-fit">
           {post.meta.title}
           <p className="text-base text-right italic text-secondary-400"> - {meta.date}</p>
         </div>
