@@ -24,6 +24,9 @@ frontMatter = frontMatter.concat(`tags: ${args.tags ?? 'some tags separated by s
 frontMatter = frontMatter.concat(
   `categories: ${args.categories ?? 'some categories separated by space'}\n`,
 );
+frontMatter = frontMatter.concat(
+  `thumbnail: ${args.thumbnail ?? 'assets/images/posts/{img file name same as post slog}'}\n`,
+);
 
 frontMatter = frontMatter.concat('---\n\n# Head1\n\n## Head2\n\n### Head3');
 
