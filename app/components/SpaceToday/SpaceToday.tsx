@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { getDateStringYyyymmdd } from '@/utils';
 
 const APOD_KEY = 'dBC0DbFqNX7bRDz8NZiz7DAhMpgNhLlddt1kS0qj';
 const APOD_URL = 'https://api.nasa.gov/planetary/apod';
@@ -31,72 +31,84 @@ interface APODProps {
 
 const SpaceToday = () => {
   const today = useMemo(() => new Date(), []);
-  const yyyymmdd = useMemo(
-    () =>
-      `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today
-        .getDate()
-        .toString()
-        .padStart(2, '0')}`,
-    [today],
-  );
 
   const defaultAPOD = useMemo<APODProps>(
     () => ({
       copyright: '',
-      date: yyyymmdd,
+      date: getDateStringYyyymmdd(today),
       explanation: 'image of "Astronomic Picture Of the Day"',
       media_type: 'image',
       title: 'loading..',
       url: 'assets/images/placeholder-768x576.png',
       service_version: '',
     }),
-    [yyyymmdd],
+    [today],
   );
 
-  const [APODImgSrc, setAPODImgSrc] = useState<APODProps>(defaultAPOD);
+  const [APOD, setAPOD] = useState<APODProps>(defaultAPOD);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
 
-  const url = useMemo(() => {
-    console.log('url');
+  const getUrl = useCallback((date: Date) => {
     const hostNameUrl = new URL(APOD_URL);
     const params = hostNameUrl.searchParams;
 
-    params.append('date', yyyymmdd);
+    params.append('date', getDateStringYyyymmdd(date));
     params.append('api_key', APOD_KEY);
     params.append('thumbs', 'true');
     return hostNameUrl;
-  }, [yyyymmdd]);
+  }, []);
 
-  const getAPOD = useCallback(async () => {
-    return fetch(url)
-      .then(async res => {
-        return (await res.json()) as APODProps;
-      })
-      .catch(error => defaultAPOD);
-  }, [defaultAPOD, url]);
+  const getAPOD = useCallback(
+    async (date: Date) => {
+      return fetch(getUrl(date))
+        .then(async res => {
+          const resJson = await res.json();
+          if (!resJson['code']) {
+            // success
+            return resJson as APODProps;
+          } else if (resJson['code'] >= 400 && resJson['code'] < 500) {
+            //404, 400
+            throw resJson;
+          } else {
+            return defaultAPOD;
+          }
+        })
+        .catch(error => {
+          throw error;
+        });
+    },
+    [defaultAPOD, getUrl],
+  );
 
-  const setAPODAsync = useCallback(async () => {
-    getAPOD().then(data => setAPODImgSrc(data));
-  }, [getAPOD]);
+  const setAPODAsync = useCallback(
+    async (date: Date) => {
+      getAPOD(date)
+        .then(data => setAPOD(data))
+        .catch(error => {
+          if ([404, 400].includes(error['code'])) {
+            setAPODAsync(new Date(date.setDate(date.getDate() - 1)));
+          }
+        });
+    },
+    [getAPOD],
+  );
 
   useEffect(() => {
-    setAPODAsync();
+    setAPODAsync(today);
   }, []);
 
   return (
     <div className="w-full flex flex-col items-center justify-center overflow-y-hidden space-y-5">
-      <h1 className="text-2xl font-semibold hover:text-primary-800">
-        <a target="_blank" href={'https://apod.nasa.gov/apod/archivepix.html'}>
-          🔭 오늘의 우주 🌌 (<span className="text-lg font-semibold">{APODImgSrc.title}</span>)
+      <h1 className="text-2xl font-semibold">
+        <a
+          target="_blank"
+          className="hover:text-primary-800"
+          href={'https://apod.nasa.gov/apod/astropix.html'}>
+          🔭 오늘의 우주 ({APOD.title}) 🌌
         </a>
       </h1>
-      {APODImgSrc.media_type === 'image' ? (
-        <a href={APODImgSrc.hdurl} target="_blank">
-          {' '}
-          <Image width={768} height={576} src={APODImgSrc.url} alt={APODImgSrc.title} />
-        </a>
-      ) : (
-        <a href={APODImgSrc.url} target="_blank" className="relative">
+      {APOD.media_type === 'video' ? (
+        <a href={APOD.url} target="_blank" className="relative">
           <Image
             src={'assets/icons/play.svg'}
             width={100}
@@ -104,19 +116,18 @@ const SpaceToday = () => {
             className="absolute top-[50%] left-[50%] mt-[-50px] ml-[-50px] rounded-[3rem] bg-primary-50 bg-opacity-30 opacity-50"
             alt="go to play"
           />
-          <Image
-            width={768}
-            height={576}
-            src={APODImgSrc.thumbnail_url as string}
-            alt={APODImgSrc.title}
-          />
+          <Image width={768} height={576} src={APOD.thumbnail_url as string} alt={APOD.title} />
+        </a>
+      ) : (
+        <a href={APOD.hdurl} target="_blank">
+          <Image width={768} height={576} src={APOD.url} alt={APOD.title} />
         </a>
       )}
       <div className="flex flex-col items-center">
         <button onClick={() => setShowExplanation(true)}>
           <p className="text-lg underline text-gray-500">설명 보기 💬</p>
         </button>
-        <p className={`mt-5 ${showExplanation ? '' : 'hidden'}`}>{APODImgSrc.explanation}</p>
+        <p className={`mt-5 ${showExplanation ? '' : 'hidden'}`}>{APOD.explanation}</p>
       </div>
     </div>
   );
