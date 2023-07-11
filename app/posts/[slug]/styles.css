@@ -42,6 +42,16 @@
   & code {
     @apply bg-background-primary-200 text-primary-700 rounded-md px-1;
   }
+
+  & pre code {
+    background-color: unset;
+    color: unset;
+    opacity: unset;
+    border-radius: unset;
+    padding-left: unset;
+    padding-right: unset;
+  }
+
   & blockquote {
     @apply bg-background-secondary-300 flex items-center p-5 text-primary-800 mb-5;
     &::before {
