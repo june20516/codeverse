@@ -4,7 +4,6 @@ import markdownToHtml from '@/lib/markdownToHTML';
 import './styles.css';
 import '@/styles/prism-duotone-dark.css';
 import Head from 'next/head';
-import Image from 'next/image';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {
@@ -17,10 +16,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   const content = await markdownToHtml(post.content || '');
   const meta = post.meta;
+  const signedTitle = `${meta.title} - Bran's codeverse`;
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        <title>{signedTitle}</title>
         <meta charSet="utf-8" />
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -28,13 +28,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <link href="/favicon.ico" rel="shortcut icon" />
         <meta content={meta.description} name="description" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content={meta.title} />
+        <meta property="og:site_name" content={signedTitle} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
+        <meta property="og:title" content={signedTitle} />
         <meta property="og:image" content={meta.thumbnail} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="codeverse" />
-        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:title" content={signedTitle} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.thumbnail} />
       </Head>
