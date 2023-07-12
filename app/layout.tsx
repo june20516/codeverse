@@ -2,6 +2,9 @@ import Link from 'next/link';
 import './globals.css';
 import LeftSideBar from './layouts/LeftSideBar';
 import Image from 'next/image';
+import Script from 'next/script';
+
+const GA_MEASUREMENT_ID = 'G-Q587R5F0YL';
 
 export const metadata = {
   title: "Bran's codeverse",
@@ -16,6 +19,16 @@ export const sideBarMenu = [
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', ${GA_MEASUREMENT_ID});
+        `}
+      </Script>
       <body>
         <header className="px-8 flex items-center">
           <Link href="/" className="flex items-center">
