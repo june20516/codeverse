@@ -117,16 +117,28 @@ const SpaceToday = () => {
             alt="go to play"
           />
           <Image
-            width={768}
-            height={576}
+            // width={768}
+            // height={576}
+            width={0}
+            height={0}
             src={APOD.thumbnail_url as string}
             alt={APOD.title}
             loading="lazy"
+            style={{ width: '768px', height: 'auto' }}
           />
         </a>
       ) : (
         <a href={APOD.hdurl} target="_blank">
-          <Image width={768} height={576} src={APOD.url} alt={APOD.title} loading="lazy" />
+          <Image
+            // width={768}
+            // height={576}
+            width={0}
+            height={0}
+            src={APOD.url}
+            alt={APOD.title}
+            loading="lazy"
+            style={{ width: '768px', height: 'auto' }}
+          />
         </a>
       )}
       <div className="flex flex-col items-center">
