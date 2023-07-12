@@ -14,6 +14,7 @@ const metadata = {
 
 const sideBarMenu = [
   { name: 'Posts', href: '/posts' },
+  { name: 'Tags', href: '/tags' },
   { name: 'About Me', href: '/about' },
 ];
 

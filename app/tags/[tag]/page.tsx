@@ -1,7 +1,6 @@
 import PostListItem from '@/app/posts/components/PostListItem';
 import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
-import Link from 'next/link';
 
 export async function generateStaticParams() {
   const tags = getAllTags().map(tag => {
