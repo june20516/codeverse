@@ -116,11 +116,17 @@ const SpaceToday = () => {
             className="absolute top-[50%] left-[50%] mt-[-50px] ml-[-50px] rounded-[3rem] bg-primary-50 bg-opacity-30 opacity-50"
             alt="go to play"
           />
-          <Image width={768} height={576} src={APOD.thumbnail_url as string} alt={APOD.title} />
+          <Image
+            width={768}
+            height={576}
+            src={APOD.thumbnail_url as string}
+            alt={APOD.title}
+            loading="lazy"
+          />
         </a>
       ) : (
         <a href={APOD.hdurl} target="_blank">
-          <Image width={768} height={576} src={APOD.url} alt={APOD.title} />
+          <Image width={768} height={576} src={APOD.url} alt={APOD.title} loading="lazy" />
         </a>
       )}
       <div className="flex flex-col items-center">

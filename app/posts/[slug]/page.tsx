@@ -46,7 +46,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="w-full bg-background-primary-100 p-4">
           <p className="font-semibold text-secondary-600">{meta.description}</p>
         </div>
-        <img src={`/${meta.thumbnail}`} className="w-[90%] mx-auto" alt="thumbnail" />
+        <img
+          src={`/${meta.thumbnail}`}
+          className="w-[90%] mx-auto"
+          alt="thumbnail"
+          loading="lazy"
+        />
         <div className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
       </article>
     </>
