@@ -12,7 +12,11 @@ export async function generateStaticParams() {
   return slugs;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+interface PostProps {
+  params: { slug: string };
+}
+
+const Post = async ({ params }: PostProps) => {
   const post = getPostBySlug(params.slug);
   const content = await markdownToHtml(post.content || '');
   const meta = post.meta;
@@ -56,4 +60,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </article>
     </>
   );
-}
+};
+
+export default Post;

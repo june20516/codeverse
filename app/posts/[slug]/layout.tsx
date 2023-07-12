@@ -1,7 +1,6 @@
 import Head from 'next/head';
-// import { useState } from 'react';
 
-export default function PostLayout({ children }: { children: React.ReactNode }) {
+const PostLayout = ({ children }: { children: React.ReactNode }) => {
   const meta = {
     title: 'Codeverse',
     description: "Bran's codeing life",
@@ -32,4 +31,6 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
       <div className="px-4">{children}</div>
     </>
   );
-}
+};
+
+export default PostLayout;

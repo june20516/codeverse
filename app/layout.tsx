@@ -19,7 +19,7 @@ const sideBarMenu = [
 
 const GA_MEASUREMENT_ID = process.env['GA_MEASUREMENT_ID'];
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <Head>
@@ -40,9 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }}
       />
       <body>
-        <header className="px-8 flex items-center">
+        <header className="flex items-center px-8">
           <Link href="/" className="flex items-center">
-            <div className="relative w-10 aspect-square mr-4">
+            <div className="relative w-10 mr-4 aspect-square">
               <Image src={'assets/images/codeverse_icon.png'} fill alt="icon of codeverse" />
             </div>
             <h1 className="text-3xl font-bold">Codeverse</h1>
@@ -56,4 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
