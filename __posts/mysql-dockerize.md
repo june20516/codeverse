@@ -2,7 +2,13 @@
 title: mysql dockerize(1) - 도커로 mysql container 띄우기
 date: 2021/11/07
 description: 내 로컬 환경은 소중하니까
-tags: MYSQL_ALLOW_EMPTY_PASSWORD MYSQL_RANDOM_ROOT_PASSWORD MYSQL_ROOT_PASSWORD container docker mysql
+tags:
+  - MYSQL_ALLOW_EMPTY_PASSWORD
+  - MYSQL_RANDOM_ROOT_PASSWORD
+  - MYSQL_ROOT_PASSWORD
+  - container
+  - docker
+  - mysql
 thumbnail: assets/images/posts/mysql-dockerize.jpeg
 ---
 

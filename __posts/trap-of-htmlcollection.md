@@ -2,8 +2,14 @@
 title: HTMLCollection의 함정
 description: 최근 작업에서 클래스를 기준으로 스크립트를 작성할 일이 있었습니다. 그런데, 이 작업 도중 선뜻 이해가 가지 않는 일이 생겨 삽질을 했습니다. 그 삽질의 기억을 기록합니다.
 date: 2021/09/07
-tags: HTMLCollection getElementsByClassName nodeList querySelectorAll()
-categories: dev web
+tags:
+  - HTMLCollection
+  - getElementsByClassName
+  - nodeList
+  - querySelectorAll()
+categories:
+  - dev
+  - web
 thumbnail: assets/images/posts/trap-of-htmlcollection.jpeg
 ---
 

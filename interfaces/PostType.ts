@@ -5,6 +5,7 @@ export interface PostMeta {
   date: string;
   description?: string;
   cardImage: string;
+  tags?: string[];
 }
 
 export interface PostSummary {
@@ -15,5 +16,4 @@ export interface PostSummary {
 export interface Post extends PostSummary {
   content: string;
   lastmod?: string;
-  tags?: string[];
 }

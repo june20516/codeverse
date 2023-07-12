@@ -2,8 +2,14 @@
 title: mysql dockerize(2) - mysql container에 볼륨 설정하기
 date: 2021/11/13
 description: 내 로컬 환경은 소중하니까
-tags: container docker mysql volume 도커 볼륨
 thumbnail: assets/images/posts/mysql-dockerize.jpeg
+tags:
+  - container
+  - docker
+  - mysql
+  - volume
+  - 도커
+  - 볼륨
 ---
 
 ## 계속 쓸 수 있는 DB 만들기

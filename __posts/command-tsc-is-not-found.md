@@ -1,7 +1,11 @@
 ---
 title: Command 'tsc' is not found
 date: 2021/10/01
-tags: NestJS Node error tsc typescript
+tags:
+  - NestJS
+  - Node
+  - tsc
+  - typescript
 thumbnail: assets/images/posts/command-tsc-is-not-found.png
 ---
 

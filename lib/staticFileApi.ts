@@ -3,26 +3,28 @@ import fs from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 import { Post } from '@/interfaces/PostType';
+import { flat, uniq } from '@/utils';
 
 const postsDirectory = join(process.cwd(), '__posts');
 
-const PostSlugList: string[] = [];
-const AllPostList: Post[] = [];
+const postSlugList: string[] = [];
+const allPostList: Post[] = [];
+const tags: string[] = [];
 
 export function getPostSlugs() {
-  if (PostSlugList.length > 0) {
-    return PostSlugList;
+  if (postSlugList.length > 0) {
+    return postSlugList;
   }
 
-  PostSlugList.push(
+  postSlugList.push(
     ...fs.readdirSync(postsDirectory).map(fileName => fileName.replace(/\.md$/, '')),
   );
-  return PostSlugList;
+  return postSlugList;
 }
 
 export function getPostBySlug(slug: string): Post {
-  if (AllPostList.length > 0) {
-    const loadedPost = AllPostList.filter(post => post.slug === slug);
+  if (allPostList.length > 0) {
+    const loadedPost = allPostList.filter(post => post.slug === slug);
     if (loadedPost.length > 0) {
       return loadedPost[0];
     }
@@ -35,13 +37,20 @@ export function getPostBySlug(slug: string): Post {
 }
 
 export function getAllPostList() {
-  if (AllPostList.length > 0) return AllPostList;
+  if (allPostList.length > 0) return allPostList;
 
   const slugs = getPostSlugs();
-  AllPostList.push(
+  allPostList.push(
     ...slugs
       .map(slug => getPostBySlug(slug))
       .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1)),
   );
-  return AllPostList;
+  return allPostList;
+}
+
+export function getAllTags() {
+  if (tags.length > 0) return tags;
+  if (allPostList.length < 1) getAllPostList();
+  tags.push(...uniq(flat(allPostList.map(post => post.meta.tags))));
+  return tags;
 }

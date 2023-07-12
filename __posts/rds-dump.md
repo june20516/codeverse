@@ -2,7 +2,14 @@
 title: AWS RDS의 Data base를 dump하기
 description: VPC 안에 있는 RDS에서 Data base를 dump해 와서 local의 mysql에 밀어 넣는 과정에서 단편적으로 맞닥뜨렸던 문제를 기록합니다.
 date: 2021/09/14
-tags: COLUMN_STATISTICS NO_AUTO_CREATE_USER column-statistics=0 mysqldump sed sql_mode ssh tunneling
+tags:
+  - COLUMN_STATISTICS
+  - NO_AUTO_CREATE_USER
+  - column-statistics=0
+  - mysqldump
+  - sed
+  - sql_mode
+  - ssh tunneling
 thumbnail: assets/images/posts/rds-dump.png
 ---
 
