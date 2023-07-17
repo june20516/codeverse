@@ -3,14 +3,13 @@ import './globals.css';
 import LeftSideBar from './layouts/LeftSideBar';
 import Image from 'next/image';
 import Script from 'next/script';
-import Head from 'next/head';
 import { Suspense } from 'react';
 import GtagNavigationEvents from './components/GtagNavigationEvents';
-import GA_MEASUREMENT_ID from '@/lib/gtag';
+import Head from 'next/head';
 
 const metadata = {
   title: "Bran's codeverse",
-  description: 'we are little dusts in the galaxy full of code',
+  description: 'We are little dusts in the galaxy full of code',
 };
 
 const sideBarMenu = [
@@ -18,9 +17,15 @@ const sideBarMenu = [
   { name: 'About Me', href: '/about' },
 ];
 
+const GA_MEASUREMENT_ID = process.env['GA_MEASUREMENT_ID'];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description}></meta>
+      </Head>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
       <Script
         id="google-analytics"
@@ -30,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
    
-            gtag('config', ${GA_MEASUREMENT_ID});
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `,
         }}
       />

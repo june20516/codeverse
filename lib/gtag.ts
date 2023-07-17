@@ -1,6 +1,7 @@
 'use client';
 
-const GA_MEASUREMENT_ID = 'G-Q587R5F0YL';
+// const GA_MEASUREMENT_ID = 'G-Q587R5F0YL';
+const GA_MEASUREMENT_ID: string = process.env['GA_MESUREMENT_ID'] as string;
 
 type GTagEvent = {
   action: string;
@@ -24,5 +25,3 @@ export const event = ({ action, category, label, value }: GTagEvent) => {
     value: value,
   });
 };
-
-export default GA_MEASUREMENT_ID;
