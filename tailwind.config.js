@@ -10,16 +10,17 @@ module.exports = {
   plugins: [],
 
   theme: {
-    colors: {
-      ...colors,
-      primary: colors.indigo,
-      secondary: colors.purple,
-      warning: colors.yellow,
-      error: colors.orange,
-      neutral: colors.teal,
-      background: {
-        primary: colors.neutral,
-        secondary: colors.stone,
+    extend: {
+      colors: {
+        primary: colors.indigo,
+        secondary: colors.purple,
+        warning: colors.yellow,
+        error: colors.orange,
+        neutral: colors.teal,
+        background: {
+          primary: colors.neutral,
+          secondary: colors.stone,
+        },
       },
     },
   },

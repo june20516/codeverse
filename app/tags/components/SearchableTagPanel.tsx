@@ -3,6 +3,7 @@
 import TextInput from '@/app/components/Input';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import TagToken from './TagToken';
 
 const SearchableTagPanel = ({ tags }: { tags: string[] }) => {
   const [keyword, setKeyword] = useState('');
@@ -18,12 +19,10 @@ const SearchableTagPanel = ({ tags }: { tags: string[] }) => {
         onChange={e => setKeyword(e.target.value)}
         placeholder={'검색어 입력'}
       />
-      <div className="p-5 flex flex-wrap">
+      <div className="flex flex-wrap p-5">
         {searchedTags.map((tag, index) => (
           <Link key={index} href={`tags/${tag}`}>
-            <code className=" bg-background-primary-200 text-primary-700 rounded-md px-1 m-2">
-              {tag}
-            </code>
+            <TagToken tag={tag} />
           </Link>
         ))}
       </div>
