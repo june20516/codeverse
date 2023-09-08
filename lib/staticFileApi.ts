@@ -6,20 +6,22 @@ import { Post } from '@/interfaces/PostType';
 import { flat, uniq } from '@/utils';
 
 const postsDirectory = join(process.cwd(), '__posts');
+const draftPostsDirectory = join(process.cwd(), '__posts/draft');
 
 const postSlugList: string[] = [];
+const draftPostSlugList: string[] = [];
 const allPostList: Post[] = [];
 const tags: string[] = [];
 
-export function getPostSlugs() {
-  if (postSlugList.length > 0) {
-    return postSlugList;
+export function getPostSlugs(draft = false) {
+  const slugList = draft ? draftPostSlugList : postSlugList;
+  const directory = draft ? draftPostsDirectory : postsDirectory;
+  if (slugList.length > 0) {
+    return slugList;
   }
 
-  postSlugList.push(
-    ...fs.readdirSync(postsDirectory).map(fileName => fileName.replace(/\.md$/, '')),
-  );
-  return postSlugList;
+  slugList.push(...fs.readdirSync(directory).map(fileName => fileName.replace(/\.md$/, '')));
+  return slugList;
 }
 
 export function getPostBySlug(slug: string): Post {
