@@ -1,10 +1,10 @@
 1:HL["/_next/static/css/e8f9a37b33730b6d.css",{"as":"style"}]
 0:[[["",{"children":["tags",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e8f9a37b33730b6d.css","precedence":"next"}]],["$L3",null]]]]
 4:I{"id":"1273","chunks":["920:static/chunks/920-4cc7de8e14e4b1e5.js","707:static/chunks/707-de92662865eaa972.js","185:static/chunks/app/layout-db7bd22285a3227e.js"],"name":"","async":false}
-5:I{"id":"8920","chunks":["920:static/chunks/920-4cc7de8e14e4b1e5.js","605:static/chunks/app/tags/[tag]/page-a47a3d6f9534bd88.js"],"name":"","async":false}
+5:I{"id":"8920","chunks":["920:static/chunks/920-4cc7de8e14e4b1e5.js","605:static/chunks/app/tags/[tag]/page-80a247f5477a47db.js"],"name":"","async":false}
 6:I{"id":"8707","chunks":["920:static/chunks/920-4cc7de8e14e4b1e5.js","707:static/chunks/707-de92662865eaa972.js","185:static/chunks/app/layout-db7bd22285a3227e.js"],"name":"","async":false}
-7:I{"id":"4463","chunks":["272:static/chunks/webpack-4c9767a598128d4d.js","667:static/chunks/2443530c-424cdbcd2566cb72.js","488:static/chunks/488-e94a566894f82f75.js"],"name":"","async":false}
-8:I{"id":"1010","chunks":["272:static/chunks/webpack-4c9767a598128d4d.js","667:static/chunks/2443530c-424cdbcd2566cb72.js","488:static/chunks/488-e94a566894f82f75.js"],"name":"","async":false}
+7:I{"id":"4463","chunks":["272:static/chunks/webpack-4b363aefe6ea6579.js","667:static/chunks/2443530c-424cdbcd2566cb72.js","488:static/chunks/488-e94a566894f82f75.js"],"name":"","async":false}
+8:I{"id":"1010","chunks":["272:static/chunks/webpack-4b363aefe6ea6579.js","667:static/chunks/2443530c-424cdbcd2566cb72.js","488:static/chunks/488-e94a566894f82f75.js"],"name":"","async":false}
 9:I{"id":"1879","chunks":["920:static/chunks/920-4cc7de8e14e4b1e5.js","904:static/chunks/app/tags/page-823f876d0ae09961.js"],"name":"","async":false}
 a:"$Sreact.suspense"
 b:I{"id":"2126","chunks":["920:static/chunks/920-4cc7de8e14e4b1e5.js","707:static/chunks/707-de92662865eaa972.js","185:static/chunks/app/layout-db7bd22285a3227e.js"],"name":"","async":false}

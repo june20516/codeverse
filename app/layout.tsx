@@ -1,11 +1,14 @@
+'use client';
+
 import Link from 'next/link';
 import './globals.css';
 import LeftSideBar from './layouts/LeftSideBar';
 import Image from 'next/image';
 import Script from 'next/script';
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Head from 'next/head';
+import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
 
 const metadata = {
   title: "Bran's codeverse",
@@ -21,6 +24,8 @@ const sideBarMenu = [
 const GA_MEASUREMENT_ID = process.env['GA_MEASUREMENT_ID'];
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
+  const wrapperRef = useRef<HTMLElement>(null);
+  useTrackScrollPositions(wrapperRef);
   return (
     <html lang="en">
       <Head>
@@ -50,7 +55,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         </header>
         <LeftSideBar menuList={sideBarMenu} />
-        <main className="overflow-auto">{children}</main>
+        <main ref={wrapperRef} className="overflow-auto">
+          {children}
+        </main>
         <Suspense fallback={null}>
           <GtagNavigationEvents />
         </Suspense>

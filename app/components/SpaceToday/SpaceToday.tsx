@@ -142,8 +142,10 @@ const SpaceToday = () => {
         </a>
       )}
       <div className="flex flex-col items-center">
-        <button onClick={() => setShowExplanation(true)}>
-          <p className="text-lg underline text-gray-500">설명 보기 💬</p>
+        <button onClick={() => setShowExplanation(!showExplanation)}>
+          <p className="text-lg underline text-gray-500">
+            설명 {showExplanation ? '접기' : '보기'} 💬
+          </p>
         </button>
         <p className={`mt-5 ${showExplanation ? '' : 'hidden'}`}>{APOD.explanation}</p>
       </div>
