@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { getDateStringYyyymmdd } from '@/utils';
+import { useAPODStore } from '@/app/stores/APOD';
+import NebulaSpinner from '../NebulaSpinner/NebulaSpinner';
 
 const APOD_KEY = 'dBC0DbFqNX7bRDz8NZiz7DAhMpgNhLlddt1kS0qj';
 const APOD_URL = 'https://api.nasa.gov/planetary/apod';
@@ -17,7 +19,7 @@ const APOD_URL = 'https://api.nasa.gov/planetary/apod';
     "title": "In the Center of the Trifid Nebula",
     "url": "https://apod.nasa.gov/apod/image/2306/Trifid_Pugh_1080.jpg"
  */
-interface APODProps {
+export interface APODProps {
   copyright: string;
   date: string;
   explanation: string;
@@ -45,7 +47,7 @@ const SpaceToday = () => {
     [today],
   );
 
-  const [APOD, setAPOD] = useState<APODProps>(defaultAPOD);
+  const { APOD, setAPOD, fetchedDate, fetched } = useAPODStore();
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
 
   const getUrl = useCallback((date: Date) => {
@@ -58,11 +60,12 @@ const SpaceToday = () => {
     return hostNameUrl;
   }, []);
 
-  const getAPOD = useCallback(
+  const fetchAPOD = useCallback(
     async (date: Date) => {
       return fetch(getUrl(date))
         .then(async res => {
           const resJson = await res.json();
+          console.log('im fetching now...');
           if (!resJson['code']) {
             // success
             return resJson as APODProps;
@@ -82,7 +85,7 @@ const SpaceToday = () => {
 
   const setAPODAsync = useCallback(
     async (date: Date) => {
-      getAPOD(date)
+      fetchAPOD(date)
         .then(data => setAPOD(data))
         .catch(error => {
           if ([404, 400].includes(error['code'])) {
@@ -90,11 +93,11 @@ const SpaceToday = () => {
           }
         });
     },
-    [getAPOD],
+    [fetchAPOD],
   );
 
   useEffect(() => {
-    setAPODAsync(today);
+    if (!fetched || fetchedDate.getDate() !== today.getDate()) setAPODAsync(today);
   }, []);
 
   return (
@@ -107,7 +110,8 @@ const SpaceToday = () => {
           🔭 오늘의 우주 ({APOD.title}) 🌌
         </a>
       </h1>
-      {APOD.media_type === 'video' ? (
+      {fetched && <NebulaSpinner></NebulaSpinner>}
+      {!fetched && APOD.media_type === 'video' && (
         <a href={APOD.url} target="_blank" className="relative">
           <Image
             src={'assets/icons/play.svg'}
@@ -127,11 +131,10 @@ const SpaceToday = () => {
             style={{ width: '768px', height: 'auto' }}
           />
         </a>
-      ) : (
+      )}
+      {!fetched && APOD.media_type !== 'video' && (
         <a href={APOD.hdurl} target="_blank">
           <Image
-            // width={768}
-            // height={576}
             width={0}
             height={0}
             src={APOD.url}
