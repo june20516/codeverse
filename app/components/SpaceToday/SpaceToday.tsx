@@ -110,8 +110,8 @@ const SpaceToday = () => {
           🔭 오늘의 우주 ({APOD.title}) 🌌
         </a>
       </h1>
-      {fetched && <NebulaSpinner></NebulaSpinner>}
-      {!fetched && APOD.media_type === 'video' && (
+      {!fetched && <NebulaSpinner />}
+      {fetched && APOD.media_type === 'video' && (
         <a href={APOD.url} target="_blank" className="relative">
           <Image
             src={'assets/icons/play.svg'}
@@ -132,7 +132,7 @@ const SpaceToday = () => {
           />
         </a>
       )}
-      {!fetched && APOD.media_type !== 'video' && (
+      {fetched && APOD.media_type !== 'video' && (
         <a href={APOD.hdurl} target="_blank">
           <Image
             width={0}
