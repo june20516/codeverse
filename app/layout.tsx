@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import './globals.css';
-import LeftSideBar from './layouts/LeftSideBar';
+import LeftSideBar from './layouts/MenuBar';
 import Image from 'next/image';
 import Script from 'next/script';
 import { Suspense, useRef } from 'react';
@@ -54,10 +54,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <h1 className="text-3xl font-bold">Codeverse</h1>
           </Link>
         </header>
-        <LeftSideBar menuList={sideBarMenu} />
-        <main ref={wrapperRef} className="overflow-auto">
-          {children}
+        <main>
+          <LeftSideBar menuList={sideBarMenu} />
+          <section ref={wrapperRef} className="overflow-auto">
+            {children}
+          </section>
         </main>
+
         <Suspense fallback={null}>
           <GtagNavigationEvents />
         </Suspense>

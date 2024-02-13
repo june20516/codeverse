@@ -2,16 +2,16 @@ import Link from 'next/link';
 
 export default function LeftSideBar({ menuList }: { menuList: { name: string; href: string }[] }) {
   return (
-    <aside>
-      <ul className="px-5">
+    <nav className="self-center">
+      <ul className="px-5 flex justify-around">
         {menuList.map((menu, index) => (
-          <li key={index} className="pt-4 border-b border-b-primary-900">
+          <li key={index} className="">
             <Link className="block w-full h-fulltext-lg text-lg" href={menu.href}>
               {menu.name}
             </Link>
           </li>
         ))}
       </ul>
-    </aside>
+    </nav>
   );
 }
