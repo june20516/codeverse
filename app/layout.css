@@ -3,10 +3,6 @@ body {
   grid-template-rows: 10% 90%;
 }
 
-header {
-  grid-row-start: 1;
-}
-
 main {
   grid-row-start: 2;
   display: grid;
