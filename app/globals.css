@@ -1,14 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import './layout.css';
-
 :root {
   font-size: 16px;
 }
 
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
 body {
+  font-family: 'Pretendard', Arial, sans-serif;
   height: 100vh;
   max-width: 100vw;
   /* background: linear-gradient(to left, transparent, rgb(var(--background-end-rgb)))
