@@ -18,3 +18,17 @@ export const uniq = (array: Array<any>): any[] => {
     else return acc.concat(curVal);
   }, []);
 };
+
+export const ensureDecoded = (inputString: string) => {
+  try {
+    const decodedString = decodeURIComponent(inputString);
+
+    if (encodeURIComponent(decodedString) === inputString) {
+      return decodedString;
+    } else {
+      return inputString;
+    }
+  } catch (e) {
+    return inputString;
+  }
+};

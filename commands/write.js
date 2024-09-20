@@ -4,7 +4,6 @@ const fs = require('fs');
 const parseArgs = args => {
   const parsedArgs = {};
   args.forEach(arg => {
-    const parts = arg.split('=');
     const key = arg.match(/--(\w+)=/)[1];
     const value = arg.match(/--\w+=(.+)/)[1];
     parsedArgs[key] = value;
@@ -30,9 +29,11 @@ frontMatter = frontMatter.concat(
 
 frontMatter = frontMatter.concat('---\n\n# Head1\n\n## Head2\n\n### Head3');
 
-fs.writeFile(`./__posts/${args.slug}.md`, frontMatter, error => {
+const filePath = `./__posts/draft/${args.slug}.md`;
+
+fs.writeFile(filePath, frontMatter, error => {
   if (error) console.error('Failed : ', error);
-  else console.log('✨✨✨post created✨✨✨ : ', `./__posts/${args.slug}.md`);
+  else console.log('✨✨✨post created✨✨✨ : ', filePath);
 });
 
 function getFormattedDate(dateString) {

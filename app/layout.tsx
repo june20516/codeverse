@@ -13,7 +13,6 @@ import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Header from './components/Header';
 import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
 import MenuBar from './layouts/MenuBar';
-import { Hidden } from '@material-ui/core';
 
 const metadata = {
   title: "Bran's codeverse",

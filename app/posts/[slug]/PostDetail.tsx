@@ -44,6 +44,7 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
       {meta.description && (
         <Box
           sx={{
+            boxSizing: 'border-box',
             width: '100%',
             p: 4,
           }}>

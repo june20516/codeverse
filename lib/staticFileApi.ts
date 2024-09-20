@@ -10,28 +10,39 @@ const draftPostsDirectory = join(process.cwd(), '__posts/draft');
 
 const postSlugList: string[] = [];
 const draftPostSlugList: string[] = [];
+
 const allPostList: Post[] = [];
+const allDfratList: Post[] = [];
+
 const tags: string[] = [];
 
-export function getPostSlugs(draft = false) {
-  const slugList = draft ? draftPostSlugList : postSlugList;
-  const directory = draft ? draftPostsDirectory : postsDirectory;
+export function getPostSlugs(options?: { isDraft?: boolean }) {
+  const isDraft = options?.isDraft ?? false;
+  const slugList = isDraft ? draftPostSlugList : postSlugList;
+  const directory = isDraft ? draftPostsDirectory : postsDirectory;
   if (slugList.length > 0) {
     return slugList;
   }
 
-  slugList.push(...fs.readdirSync(directory).map(fileName => fileName.replace(/\.md$/, '')));
+  slugList.push(
+    ...fs
+      .readdirSync(directory)
+      .filter(fileName => fileName.includes('.md'))
+      .map(fileName => fileName.replace(/\.md$/, '')),
+  );
   return slugList;
 }
 
-export function getPostBySlug(slug: string): Post {
-  if (allPostList.length > 0) {
-    const loadedPost = allPostList.filter(post => post.slug === slug);
+export function getPostBySlug({ slug, isDraft }: { slug: string; isDraft?: boolean }): Post {
+  const list = isDraft ? allDfratList : allPostList;
+  const directory = isDraft ? draftPostsDirectory : postsDirectory;
+  if (list.length > 0) {
+    const loadedPost = list.filter(post => post.slug === slug);
     if (loadedPost.length > 0) {
       return loadedPost[0];
     }
   }
-  const fullPath = join(postsDirectory, `${slug}.md`);
+  const fullPath = join(directory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
@@ -44,10 +55,23 @@ export function getAllPostList() {
   const slugs = getPostSlugs();
   allPostList.push(
     ...slugs
-      .map(slug => getPostBySlug(slug))
+      .map(slug => getPostBySlug({ slug }))
       .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1)),
   );
   return allPostList;
+}
+
+export function getAllDraftList() {
+  const isDraft = true;
+  if (allDfratList.length > 0) return allDfratList;
+
+  const slugs = getPostSlugs({ isDraft });
+  allDfratList.push(
+    ...slugs
+      .map(slug => getPostBySlug({ slug, isDraft }))
+      .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1)),
+  );
+  return allDfratList;
 }
 
 export function getAllTags() {

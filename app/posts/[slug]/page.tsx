@@ -18,7 +18,7 @@ interface PostProps {
 }
 
 const Post = async ({ params }: PostProps) => {
-  const post = getPostBySlug(params.slug);
+  const post = getPostBySlug({ slug: params.slug });
   const content = await markdownToHtml(post.content || '');
   const meta = post.meta;
   const signedTitle = `${meta.title} - Bran's codeverse`;
