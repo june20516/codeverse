@@ -3,7 +3,8 @@
 import { useScrollStore } from '@/app/stores/scroll';
 import { Post, PostMeta } from '@/interfaces/PostType';
 import { useRef } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Icon, Typography } from '@mui/material';
+import { FormatQuote } from '@mui/icons-material';
 
 interface PostDetailProps {
   post: Post;
@@ -20,51 +21,38 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
       <Box
         ref={titleRef}
         sx={{
-          fontSize: '2rem',
           fontWeight: 'bold',
           textAlign: 'center',
           p: 5,
-          backgroundColor: 'white',
           maxHeight: '24rem',
           minHeight: 'fit-content',
           transition: 'all 0.3s',
           position: 'relative',
         }}>
-        <Typography
-          component="span"
-          sx={{
-            ...(isStickTop
-              ? {}
-              : {
-                  position: 'absolute',
-                  top: '5px',
-                  transform: 'translate(-50%, 50%)',
-                  fontSize: '1.25rem',
-                }),
-          }}>
-          {post.meta.title}
-        </Typography>
+        <Typography variant="subtitle1">{post.meta.title}</Typography>
         <Typography
           variant="body2"
+          color="textSecondary"
           sx={{
-            fontSize: '1rem',
             textAlign: 'right',
             fontStyle: 'italic',
-            color: 'secondary.400',
           }}>
           - {meta.date}
         </Typography>
       </Box>
 
-      <Box
-        sx={{
-          width: '100%',
-          p: 4,
-        }}>
-        <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'secondary.600' }}>
-          {meta.description}
-        </Typography>
-      </Box>
+      {meta.description && (
+        <Box
+          sx={{
+            width: '100%',
+            p: 4,
+          }}>
+          <Typography variant="body1" color="info">
+            <FormatQuote />
+            {meta.description}
+          </Typography>
+        </Box>
+      )}
 
       <Box
         component="img"
@@ -80,7 +68,7 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
 
       <Box
         className="markdown-body post"
-        sx={{ mt: 2 }}
+        sx={{ mb: 2 }}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </Box>

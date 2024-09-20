@@ -29,8 +29,6 @@ const styles: (theme: Theme) => Record<string, SystemStyleObject<Theme>> = theme
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    p: '2rem',
-    bgcolor: 'white',
   },
   content: {
     display: 'flex',

@@ -56,4 +56,6 @@ const theme = createTheme({
   },
 });
 
+export const pxToRem = theme.typography.pxToRem;
+
 export default theme;

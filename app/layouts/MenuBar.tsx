@@ -6,8 +6,8 @@ export default function MenuBar({ menuList }: { menuList: { name: string; href: 
     <Box
       component={'nav'}
       sx={{
-        gridRowStart: 1,
         alignSelf: 'center',
+        width: '100%',
       }}>
       <List sx={{ px: 5, display: 'flex', justifyContent: 'space-around' }}>
         {menuList.map((menu, index) => (

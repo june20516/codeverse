@@ -2,7 +2,7 @@
 
 import './globals.css';
 
-import { Box, ThemeProvider } from '@mui/material';
+import { Box, Grid2, ThemeProvider } from '@mui/material';
 import Head from 'next/head';
 import Script from 'next/script';
 import { Suspense, useRef } from 'react';
@@ -13,6 +13,7 @@ import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Header from './components/Header';
 import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
 import MenuBar from './layouts/MenuBar';
+import { Hidden } from '@material-ui/core';
 
 const metadata = {
   title: "Bran's codeverse",
@@ -50,26 +51,19 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           `,
           }}
         />
-        <Box
-          component={'body'}
-          sx={{
-            display: 'grid',
-            gridTemplateRows: '15% 85%',
-          }}>
-          <Header layoutStyle={{ gridRowStart: 1 }} />
+        <Box component={'body'} sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Header layoutStyle={{ height: '10%' }} />
           <Box
             component={'main'}
             sx={{
-              gridRowStart: 2,
-              justifyItems: 'stretch',
-              alignItems: 'stretch',
-              display: 'grid',
-              gridTemplateRows: '8% 1fr',
+              height: '90%',
               width: theme.breakpoints.values.md,
               mx: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
             }}>
             <MenuBar menuList={sideBarMenu} />
-            <Box component="section" ref={wrapperRef} sx={{ gridRowStart: 2, overflow: 'scroll' }}>
+            <Box component="section" ref={wrapperRef} sx={{ overflow: 'scroll' }}>
               {children}
             </Box>
           </Box>

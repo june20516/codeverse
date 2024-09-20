@@ -1,49 +1,97 @@
-/* @import '@/styles/markdown-css-github.css'; */
-
 .markdown-body {
-  & h1 {
-    @apply text-4xl font-bold py-5;
-    &::before {
-      content: '#';
-      @apply mr-3 self-start;
-    }
-  }
-  & h2 {
-    @apply text-3xl font-bold py-5;
-    &::before {
-      content: '##';
-      @apply mr-3 self-start;
-    }
-  }
-  & h3 {
-    @apply text-2xl font-bold py-5;
-    &::before {
-      content: '###';
-      @apply mr-3 self-start;
-    }
-  }
-  & h4 {
-    @apply text-xl font-bold py-5;
-    &::before {
-      content: '####';
-      @apply mr-3 self-start;
-    }
-  }
-  & h5 {
-    @apply text-xl font-bold py-5;
-    &::before {
-      content: '#####';
-      @apply mr-3 self-start;
-    }
-  }
-  & p {
-    @apply pt-5 indent-3;
-  }
-  & code {
-    @apply bg-background-primary-200 text-primary-700 rounded-md px-1;
+  p,
+  pre,
+  code,
+  blockquote,
+  ul,
+  ol,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    line-height: 170%;
   }
 
-  & pre code {
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  h1::before {
+    content: '#';
+    margin-right: 0.75rem;
+    align-self: flex-start;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  h2::before {
+    content: '##';
+    margin-right: 0.75rem;
+    align-self: flex-start;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  h3::before {
+    content: '###';
+    margin-right: 0.75rem;
+    align-self: flex-start;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  h4::before {
+    content: '####';
+    margin-right: 0.75rem;
+    align-self: flex-start;
+  }
+
+  h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  h5::before {
+    content: '#####';
+    margin-right: 0.75rem;
+    align-self: flex-start;
+  }
+
+  p {
+    padding-bottom: 1.25rem;
+    text-indent: 0.75rem;
+  }
+
+  code {
+    background-color: #f0f0f0;
+    color: #00796b;
+    border-radius: 0.375rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  pre code {
     background-color: unset;
     color: unset;
     opacity: unset;
@@ -52,31 +100,55 @@
     padding-right: unset;
   }
 
-  & blockquote {
-    @apply bg-background-secondary-300 flex items-center p-5 text-primary-800 mb-5;
-    &::before {
-      content: '〝';
-      @apply text-2xl mr-3 self-start;
-    }
-    & p {
-      @apply italic text-lg p-0 indent-0;
-    }
+  blockquote {
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    color: #37474f;
+    margin-bottom: 1.25rem;
   }
-  & pre {
-    @apply mt-4;
+
+  blockquote::before {
+    content: '〝';
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+    align-self: flex-start;
   }
-  & a {
-    @apply text-secondary-800 hover:text-opacity-70;
+
+  blockquote p {
+    font-style: italic;
+    font-size: 1.125rem;
+    padding: 0;
+    text-indent: 0;
   }
-  & ul {
+
+  pre[class*='language-'] {
+    border-radius: 0.375rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #00796b;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: rgba(0, 121, 107, 0.7);
+  }
+
+  ul {
     padding-left: 2rem;
     list-style-type: circle;
   }
-  & ol {
+
+  ol {
     padding-left: 2rem;
     list-style-type: decimal;
   }
-  & li::marker {
-    @apply text-primary-700;
+
+  li::marker {
+    color: #00796b;
   }
 }
