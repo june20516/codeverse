@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "server": "next build && npx http-server out",
     "deploy-init": "git remote add gh-page https://github.com/june20516/june20516.github.io.git",
     "deploy": "rm -rf node_modules/.cache && next build && touch out/.nojekyll && git add ./out && git commit -m \"[publish]$(date +\"%H:%M, %d/%m/%Y\")\" && git subtree push --prefix out gh-page main;",
@@ -23,7 +24,7 @@
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
-    "eslint": "8.41.0",
+    "eslint": "^9.10.0",
     "eslint-config-next": "13.4.4",
     "gray-matter": "^4.0.3",
     "next": "13.4.4",
@@ -48,6 +49,11 @@
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.12",
-    "prettier": "^2.8.8"
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "prettier": "^2.8.8",
+    "typescript-eslint": "^8.5.0"
   }
 }

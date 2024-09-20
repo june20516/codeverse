@@ -28,7 +28,7 @@ const PostLayout = ({ children }: { children: React.ReactNode }) => {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.cardImage} />
       </Head>
-      <div className="px-4">{children}</div>
+      <div>{children}</div>
     </>
   );
 };

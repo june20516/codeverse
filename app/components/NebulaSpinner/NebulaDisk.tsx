@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
 const NebulaDisk = ({
   size,
@@ -16,15 +17,22 @@ const NebulaDisk = ({
   const colors = ['#6366f1', '#a855f7', '#ec4899'];
 
   const radiusSequenceProps = (flag: number) => {
-    const get = () => Math.max((flag * randomDigit()) % 10, 5);
-    return `rounded-tl-[${get()}0%] rounded-tr-[${get()}0%] rounded-bl-[${get()}0%] rounded-br-[${get()}0%]`;
+    const get = () => Math.max(flag * randomDigit(), 50);
+    return {
+      borderTopLeftRadius: `${get()}%`,
+      borderTopRightRadius: `${get()}%`,
+      borderBottomLeftRadius: `${get()}%`,
+      borderBottomRightRadius: `${get()}%`,
+    };
   };
 
   const translateSequenceProps = (flag: number) => {
-    const get = () => (flag * randomDigit()) % 5;
-    return `${get() > 4.5 ? '' : '-'}translate-x-[${get()}px] ${
-      get() > 4.5 ? '' : '-'
-    }translate-y-[${get()}px]`;
+    const get = () => (flag * randomDigit()) % 10;
+    return {
+      transform: `translate(${get() > 4.5 ? '' : '-'}${get()}px, ${
+        get() > 4.5 ? '' : '-'
+      }${get()}px)`,
+    };
   };
 
   useEffect(() => {
@@ -39,21 +47,34 @@ const NebulaDisk = ({
   }, []);
 
   return (
-    <div
-      style={{ width: size }}
-      className={`animate-[spin 10s linear infinite] transition-transform duration-[5s] ${
-        depth === 0 ? '' : translateSequenceProps(everChangingDigitFlag)
-      }`}>
-      <div
-        style={{
-          background: colors[depth],
-        }}
-        className={`aspect-square transition-[border-radius] ${radiusSequenceProps(
-          everChangingDigitFlag,
-        )} ease-linear duration-[3000ms] flex justify-center items-center`}>
-        {children}
-      </div>
-    </div>
+    <Box
+      sx={{
+        width: size,
+        animation: 'spin 20s linear infinite',
+        '@keyframes spin': {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+      }}>
+      <Box
+        sx={{
+          transition: 'transform 10s',
+          ...translateSequenceProps(everChangingDigitFlag),
+        }}>
+        <Box
+          sx={{
+            backgroundColor: colors[depth],
+            aspectRatio: '1 / 1',
+            transition: 'border-radius 5s',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            ...radiusSequenceProps(everChangingDigitFlag),
+          }}>
+          {children}
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

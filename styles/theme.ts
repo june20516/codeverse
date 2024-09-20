@@ -19,8 +19,21 @@ const theme = createTheme({
     h2: {
       fontSize: '1.5rem',
     },
+    subtitle1: {
+      fontSize: '1.25rem',
+      fontWeight: 'bold',
+    },
+    subtitle2: {
+      fontSize: '1.25rem',
+    },
     body1: {
-      fontSize: '0.7rem',
+      fontSize: '1rem',
+    },
+    body2: {
+      fontSize: '0.875rem',
+    },
+    caption: {
+      fontSize: '0.75rem',
     },
   },
   palette: {

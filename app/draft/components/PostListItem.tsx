@@ -1,4 +1,7 @@
+'use client';
+
 import { PostSummary } from '@/interfaces/PostType';
+import { Box, ListItem, Typography } from '@mui/material';
 import Link from 'next/link';
 
 const PostListItem = ({
@@ -9,30 +12,53 @@ const PostListItem = ({
   hasThumbnail?: boolean;
 }) => {
   return (
-    <li className="w-full mt-4 border-b border-b-primary-900 px-5">
-      <Link href={`posts/${post.slug}`}>
+    <Link href={`posts/${post.slug}`}>
+      <ListItem
+        sx={{
+          width: '100%',
+          mt: 4,
+          borderBottom: '1px dashed',
+          borderColor: 'lightgray',
+          display: 'flex',
+          flexDirection: 'column',
+          px: 5,
+        }}>
         {hasThumbnail ? (
-          <div
+          <Box
             style={{
               backgroundImage: `url(${post.meta.thumbnail})`,
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
             }}
-            className="w-full h-72 mx-auto"
+            sx={{ width: '100%', height: '18rem', mx: 'auto' }}
           />
         ) : null}
-        <div className="flex justify-between my-5 pb-3">
-          <div className="flex flex-col">
-            <span className="text-xl font-semibold">{post.meta.title}</span>
-            <p className="pt-5 w-full text-gray-500 min-h-[1rem]">
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            my: 3,
+            pb: 2,
+            gap: 1,
+          }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="subtitle1">{post.meta.title}</Typography>
+            <Typography variant="subtitle2" color="textSecondary">
               {post.meta.description ? post.meta.description : null}
-            </p>
-          </div>
-          <span className="flex flex-col justify-start text-sm italic">{post.meta.date}</span>
-        </div>
-      </Link>
-    </li>
+            </Typography>
+          </Box>
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            fontStyle={'italic'}
+            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'start' }}>
+            {post.meta.date}
+          </Typography>
+        </Box>
+      </ListItem>
+    </Link>
   );
 };
 

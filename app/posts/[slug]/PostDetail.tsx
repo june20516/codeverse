@@ -1,37 +1,89 @@
 'use client';
+
 import { useScrollStore } from '@/app/stores/scroll';
-/* eslint-disable @next/next/no-img-element */
 import { Post, PostMeta } from '@/interfaces/PostType';
 import { useRef } from 'react';
+import { Box, Typography } from '@mui/material';
 
 interface PostDetailProps {
   post: Post;
   meta: PostMeta;
   content: string;
 }
+
 const PostDetail = ({ post, meta, content }: PostDetailProps) => {
   const titleRef = useRef<HTMLDivElement>(null);
   const { isStickTop } = useScrollStore();
 
   return (
-    <>
-      <div
+    <Box component={'article'} sx={{ position: 'relative' }}>
+      <Box
         ref={titleRef}
-        className={`text-4xl font-bold text-center p-10 bg-white max-h-96 min-h-fit transition-all`}>
-        <span
-          className={`${
-            !isStickTop ? 'absolute top-5 -translate-x-[50%] translate-y-[50%] text-2xl' : ''
-          }`}>
+        sx={{
+          fontSize: '2rem',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          p: 5,
+          backgroundColor: 'white',
+          maxHeight: '24rem',
+          minHeight: 'fit-content',
+          transition: 'all 0.3s',
+          position: 'relative',
+        }}>
+        <Typography
+          component="span"
+          sx={{
+            ...(isStickTop
+              ? {}
+              : {
+                  position: 'absolute',
+                  top: '5px',
+                  transform: 'translate(-50%, 50%)',
+                  fontSize: '1.25rem',
+                }),
+          }}>
           {post.meta.title}
-        </span>
-        <p className="text-base text-right italic text-secondary-400"> - {meta.date}</p>
-      </div>
-      <div className="w-full bg-background-primary-100 p-4">
-        <p className="font-semibold text-secondary-600">{meta.description}</p>
-      </div>
-      <img src={`/${meta.thumbnail}`} className="w-[90%] mx-auto" alt="thumbnail" loading="lazy" />
-      <div className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
-    </>
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: '1rem',
+            textAlign: 'right',
+            fontStyle: 'italic',
+            color: 'secondary.400',
+          }}>
+          - {meta.date}
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          width: '100%',
+          p: 4,
+        }}>
+        <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'secondary.600' }}>
+          {meta.description}
+        </Typography>
+      </Box>
+
+      <Box
+        component="img"
+        src={`/${meta.thumbnail}`}
+        sx={{
+          width: '90%',
+          margin: 'auto',
+          display: 'block',
+        }}
+        alt="thumbnail"
+        loading="lazy"
+      />
+
+      <Box
+        className="markdown-body post"
+        sx={{ mt: 2 }}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    </Box>
   );
 };
 

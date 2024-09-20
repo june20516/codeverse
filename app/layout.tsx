@@ -1,17 +1,18 @@
 'use client';
 
-import Link from 'next/link';
 import './globals.css';
-import LeftSideBar from './layouts/MenuBar';
-import Image from 'next/image';
+
+import { Box, ThemeProvider } from '@mui/material';
+import Head from 'next/head';
 import Script from 'next/script';
 import { Suspense, useRef } from 'react';
-import GtagNavigationEvents from './components/GtagNavigationEvents';
-import Head from 'next/head';
-import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
-import Header from './components/Header';
-import { ThemeProvider } from '@mui/material';
+
 import theme from '@/styles/theme';
+
+import GtagNavigationEvents from './components/GtagNavigationEvents';
+import Header from './components/Header';
+import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
+import MenuBar from './layouts/MenuBar';
 
 const metadata = {
   title: "Bran's codeverse",
@@ -49,19 +50,34 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           `,
           }}
         />
-        <body>
+        <Box
+          component={'body'}
+          sx={{
+            display: 'grid',
+            gridTemplateRows: '15% 85%',
+          }}>
           <Header layoutStyle={{ gridRowStart: 1 }} />
-          <main>
-            <LeftSideBar menuList={sideBarMenu} />
-            <section ref={wrapperRef} className="overflow-auto">
+          <Box
+            component={'main'}
+            sx={{
+              gridRowStart: 2,
+              justifyItems: 'stretch',
+              alignItems: 'stretch',
+              display: 'grid',
+              gridTemplateRows: '8% 1fr',
+              width: theme.breakpoints.values.md,
+              mx: 'auto',
+            }}>
+            <MenuBar menuList={sideBarMenu} />
+            <Box component="section" ref={wrapperRef} sx={{ gridRowStart: 2, overflow: 'scroll' }}>
               {children}
-            </section>
-          </main>
+            </Box>
+          </Box>
 
           <Suspense fallback={null}>
             <GtagNavigationEvents />
           </Suspense>
-        </body>
+        </Box>
       </html>
     </ThemeProvider>
   );

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Box, Typography, Theme, useTheme } from '@mui/material';
+import { Box, Theme, Typography, useTheme } from '@mui/material';
 import { SystemStyleObject } from '@mui/system';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface HeaderProps {
   layoutStyle?: SystemStyleObject<Theme>;
@@ -28,7 +28,8 @@ const styles: (theme: Theme) => Record<string, SystemStyleObject<Theme>> = theme
   header: {
     display: 'flex',
     alignItems: 'center',
-    px: '2rem',
+    justifyContent: 'center',
+    p: '2rem',
     bgcolor: 'white',
   },
   content: {

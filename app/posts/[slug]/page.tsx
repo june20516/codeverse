@@ -4,6 +4,7 @@ import './styles.css';
 import '@/styles/prism-duotone-dark.css';
 import Head from 'next/head';
 import PostDetail from './PostDetail';
+import { Box } from '@mui/material';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {
@@ -34,9 +35,7 @@ const Post = async ({ params }: PostProps) => {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.thumbnail} />
       </Head>
-      <article className="space-y-6">
-        <PostDetail post={post} meta={meta} content={content} />
-      </article>
+      <PostDetail post={post} meta={meta} content={content} />
     </>
   );
 };

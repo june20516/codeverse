@@ -1,10 +1,20 @@
+'use client';
+
+import { Box, Typography } from '@mui/material';
+
 const About = () => {
   return (
-    <div className="w-full h-full flex justify-center items-center">
-      <h1 className="text-xl">Bran</h1>
-    </div>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Typography variant="h1">Bran</Typography>
+    </Box>
   );
 };
 
 export default About;
-

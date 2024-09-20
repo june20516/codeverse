@@ -1,5 +1,14 @@
-const TagToken = ({ tag }: { tag: string }) => (
-  <code className="px-1 m-2 rounded-md bg-background-primary-200 text-primary-700">{tag}</code>
-);
+import { Box, Typography } from '@mui/material';
+
+const TagToken = ({ tag }: { tag: string }) => {
+  return (
+    <Box component={'code'} sx={{ px: 2, mr: 1, borderRadius: 1, bgcolor: 'whitesmoke' }}>
+      {/* {tag} */}
+      <Typography component={'span'} color="primary">
+        {tag}
+      </Typography>
+    </Box>
+  );
+};
 
 export default TagToken;
