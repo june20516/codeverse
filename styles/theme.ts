@@ -37,21 +37,37 @@ const theme = createTheme({
     },
   },
   palette: {
+    divider: '#5158d9',
     primary: {
-      main: '#556cd6',
+      main: '#B782F4',
     },
     secondary: {
-      main: '#19857b',
+      main: '#EF89E1',
+    },
+    action: {
+      active: '#F4A261',
+      disabled: '#1E299E',
+    },
+    info: {
+      main: '#5158d9',
     },
     error: {
-      main: '#ff1744',
+      main: '#EA3786',
     },
     background: {
-      default: '#f5f5f5',
+      default: '#080046',
     },
     text: {
-      primary: '#333',
-      secondary: '#666',
+      primary: '#B782F4',
+      secondary: '#EF89E1',
+      disabled: '#1E299E',
+    },
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        color: 'text.primary', // 기본 텍스트 색상을 text.primary로 설정
+      },
     },
   },
 });

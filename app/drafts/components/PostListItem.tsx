@@ -1,7 +1,7 @@
 'use client';
 
 import { PostSummary } from '@/interfaces/PostType';
-import { Box, ListItem, Typography } from '@mui/material';
+import { Box, ListItem, Typography, useTheme } from '@mui/material';
 import Link from 'next/link';
 
 const PostListItem = ({
@@ -11,6 +11,7 @@ const PostListItem = ({
   post: PostSummary;
   hasThumbnail?: boolean;
 }) => {
+  const theme = useTheme();
   return (
     <Link href={`drafts/${post.slug}`}>
       <ListItem
@@ -18,7 +19,7 @@ const PostListItem = ({
           width: '100%',
           mt: 4,
           borderBottom: '1px dashed',
-          borderColor: 'lightgray',
+          borderColor: theme.palette.divider,
           display: 'flex',
           flexDirection: 'column',
           px: 5,

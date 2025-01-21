@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 
 const Home: NextPage = () => {
   return (
-    <Box sx={{ width: '100%', p: 5 }}>
+    <Box sx={{ width: '100%', py: 5 }}>
       <SpaceToday />
     </Box>
   );
