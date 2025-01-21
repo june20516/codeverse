@@ -1,7 +1,7 @@
 ---
 title: mysql dockerize(1) - 도커로 mysql container 띄우기
 date: 2021/11/07
-description: 내 로컬 환경은 소중하니까
+description: 로컬 환경을 안전하게 보호하기 위해 MySQL을 도커로 격리하여 실행하는 과정을 기록한다.
 tags:
   - MYSQL_ALLOW_EMPTY_PASSWORD
   - MYSQL_RANDOM_ROOT_PASSWORD
@@ -12,17 +12,17 @@ tags:
 thumbnail: assets/images/posts/mysql-dockerize.jpeg
 ---
 
-최근 작업 중 DB에 스키마 변경을 가하면 DB랑 로컬 개발 환경이 함께 쭉 드러누워버리는 일이 자주 발생합니다. 로컬에서 돌리고 있던 mysql을 격리시켜버리기로 결심했습니다.
+최근 작업 중 DB 스키마 변경이 로컬 개발 환경에 영향을 미치는 일이 자주 발생했다. 이를 방지하기 위해 로컬에서 실행 중인 MySQL을 도커로 격리하여 실행하기로 했다.
 
 ## 시작점
 
-저는 DB로 mysql을 쓰고있고, ROR로 프로젝트를 진행하고 있습니다. 로컬 환경에 mysql server를 설치해 쓰고있었고, Docker는 이미 깔려있습니다.
+현재 사용 중인 DB는 MySQL이며, Ruby on Rails(RoR) 프로젝트를 진행 중이다. 로컬 환경에 MySQL 서버가 설치되어 있고, Docker는 이미 설치되어 있다.
 
 ## 도커로 mysql container 띄우기
 
 ### mysql 이미지 가져오기
 
-먼저 mysql 이미지를 가져옵니다.
+먼저 MySQL 이미지를 가져온다.
 
 ```shell
 $ docker pull mysql
@@ -36,11 +36,11 @@ Status: Downloaded newer image for mysql:latest
 docker.io/library/mysql:latest
 ```
 
-lts버젼의 mysql 이미지가 로드됩니다.
+LTS 버전의 MySQL 이미지가 로드된다.
 
 ### mysql 이미지를 컨테이너로 실행하기
 
-로드한 이미지를 컨테이너로 실행해봅니다.
+로드한 이미지를 컨테이너로 실행해본다.
 
 ```shell
 $ docker run mysql
@@ -55,7 +55,7 @@ $ docker run mysql
     - MYSQL_RANDOM_ROOT_PASSWORD
 ```
 
-에러가 뜹니다. mysql 컨테이너는 root 유저의 password를 어떻게 할 것인지에 대해 옵션을 명시해야 한다고 합니다. 아래 3개의 항목 중 하나를 선택해 컨테이너 안에 환경변수로 넘겨 줍니다.
+에러가 발생한다. MySQL 컨테이너는 루트 사용자의 비밀번호 설정 방법을 명시해야 한다. 아래 세 가지 옵션 중 하나를 선택해 컨테이너의 환경 변수로 전달한다.
 
 ```shell
 $ docker run mysql -e MYSQL_ROOT_PASSWORD=1234
@@ -65,9 +65,9 @@ $ docker run mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=abcd
 $ docker run mysql -e MYSQL_RANDOM_ROOT_PASSWORD=abcd
 ```
 
-저는 root password를 지정해주었습니다. password를 설정하지 않는 `MYSQL_ALLOW_EMPTY_PASSWORD` 옵션이나 `MYSQL_RANDOM_ROOT_PASSWORD` 옵션도 환경변수 안에 어떤 값이든 담아주어야 동작합니다. 실제로 해당 값이 영향을 끼치지는 않습니다.
+루트 비밀번호를 지정해주었다. 비밀번호를 설정하지 않는 MYSQL_ALLOW_EMPTY_PASSWORD나 MYSQL_RANDOM_ROOT_PASSWORD 옵션도 환경 변수에 값을 지정해줘야 동작한다. 실제로 해당 값이 영향을 미치지는 않는다.
 
-random 옵션은 아래와 같이 실행 로그에서 비밀번호를 알려줍니다.
+랜덤 비밀번호 옵션을 사용하면 실행 로그에 비밀번호가 표시된다.
 
 ```shell
 2021-11-07 07:55:40+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.27-1debian10 started.
@@ -82,7 +82,7 @@ random 옵션은 아래와 같이 실행 로그에서 비밀번호를 알려줍�
 2021-11-07T07:55:51.690582Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.27'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
 ```
 
-컨테이너가 잘 떴는지 확인해봅니다.
+컨테이너가 정상적으로 실행되었는지 확인한다.
 
 ```shell
 $ docker ps
@@ -93,7 +93,7 @@ ddb780457980   mysql      "docker-entrypoint.s…"   4 minutes ago   Up 4 minute
 
 ### 컨테이너 실행 결과 확인하기
 
-터미널 창을 하나 더 켜고, 아래 명령어로 방금 띄운 mysql 컨테이너에 접속해 볼 수 있습니다. 지정한 비밀번호로 mysql 클라이언트도 잘 접속이 됩니다.
+터미널을 하나 더 열어 방금 띄운 MySQL 컨테이너에 접속할 수 있다. 지정한 비밀번호로 MySQL 클라이언트에 접속해본다.
 
 ```shell
 $ docker exec -it musing_dewdney bash
@@ -118,8 +118,8 @@ mysql>
 
 ### 옵션 추가
 
-mysql 서버는 항상 돌아가고 있어야 하므로 데몬 환경으로 실행하는 것이 일반적입니다. 그리고 편하게 접근하기 위해서 임의로 컨테이너에 네임도 붙이고 싶습니다.
-띄워놓은 컨테이너를 정지, 삭제 하고 몇가지 옵션을 추가해 새로 띄워봅니다.
+MySQL 서버는 항상 실행되어 있어야 하므로 데몬 모드로 실행하는 것이 일반적이다. 또한, 컨테이너에 접근하기 쉽게 이름을 지정할 수 있다.
+이미 실행 중인 컨테이너를 정지하고 삭제한 후, 몇 가지 옵션을 추가하여 새로 띄운다.
 
 ```shell
 $ docker kill musing_dewdney
@@ -129,7 +129,7 @@ $ docker rm musing_dewdney
 $ docker run --name mysql -e MYSQL_ROOT_PASSWORD=1234 -d mysql
 ```
 
-성공하였다면 아까와 같이 컨테이너 안에 접속하여 확인할 수 있습니다.
+성공적으로 실행되었다면, 아까와 같이 컨테이너 내부에 접속하여 확인할 수 있다.
 
 ```
 $ docker exec -it mysql bash

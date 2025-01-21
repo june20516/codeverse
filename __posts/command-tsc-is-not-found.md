@@ -9,9 +9,9 @@ tags:
 thumbnail: assets/images/posts/command-tsc-is-not-found.png
 ---
 
-Node.js 환경에서 Nestjs 프레임 워크를 사용하기 위해 type script를 설정하다가 `Command 'tsc' is not found`라는 에러가 발생하는 경우가 있었습니다. 분명히 tsc는 몇번이고 설치를 하였는데 찾을 수가 없다고 하고, 라이브러리 리스트에서는 여전히 설치가 된 것으로 잡히고 있습니다. yarn과 npm 둘 다 시도해 봤지만 마찬가지였습니다.
+Node.js 환경에서 NestJS 프레임워크를 사용하기 위해 TypeScript를 설정하다가 `Command 'tsc' is not found`라는 에러가 발생했다. 분명 여러 번 tsc를 설치했음에도 불구하고, 명령어를 찾을 수 없다고 나오며, 라이브러리 리스트에서는 설치가 완료된 것으로 보였다. Yarn과 npm을 모두 사용해 봤지만 결과는 같았다.
 
-여러 레퍼런스를 찾아보다가 해결책을 찾아 기록으로 남깁니다.
+여러 레퍼런스를 찾은 끝에 해결책을 찾았고, 이를 기록으로 남긴다.
 
 ```shell
 export PATH="$PATH:/Users/narb/.npm-global/lib/node_modules/typescript/bin"
@@ -19,10 +19,8 @@ export PATH="$PATH:/Users/narb/.npm-global/lib/node_modules/typescript/bin"
 export PATH="$PATH:/Users/narb/.npm-global/bin"
 ```
 
-문제는 역시나 command가 위치한 path를 찾을 수 없었던 것이었습니다. npm 설치 초기에 path를 별도로 설정해야 하는지는 모르겠지만, 제 로컬 환경에서는 설정이 되어있지 않았던 것이 문제였습니다.
+문제는 결국 명령어가 위치한 경로를 터미널이 찾지 못했던 것이었다. npm 설치 시 별도로 PATH 설정을 해야 하는지는 불분명하지만, 내 로컬 환경에서는 PATH가 설정되어 있지 않아서 이 문제가 발생했다.
 
-위의 PATH 추가 구문을 terminal에서 사용하는 설정파일인 rc파일이나 profile파일 안에 끼워넣으면 됩니다.
-(아래 줄의 코드를 먼저 시도해 보고 안되면 윗줄도 추가하면 좋을 것 같습니다. )
-저의 경우 zsh를 쓰기 때문에 `~/.zshrc` 에 넣었습니다. 아직 bash를 쓰고있다면 `~/.bash_profile`에 넣으면 됩니다.
-이후 터미널을 재시작 하거나 `source ~/.zshrc` 하고 나서부터 `tsc` 명령어를 사용할 수 있습니다.
-다
+위의 `PATH` 추가 구문을 터미널 설정 파일(예: .zshrc, .bash_profile)에 추가하면 된다. 먼저 두 번째 줄의 코드를 시도해 보고, 문제가 해결되지 않으면 첫 번째 줄도 추가해 보는 것이 좋다. 나는 zsh을 사용 중이어서 ~/.zshrc에 추가했지만, bash를 사용하고 있다면 ~/.bash_profile에 넣으면 된다.
+
+파일을 수정한 후에는 터미널을 재시작하거나 `source ~/.zshrc` 명령어를 실행하면 된다. 이후 `tsc` 명령어가 정상적으로 동작하는 것을 확인할 수 있다.
