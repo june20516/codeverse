@@ -5,8 +5,10 @@ import matter from 'gray-matter';
 import { Post } from '@/interfaces/PostType';
 import { flat, uniq } from '@/utils';
 
-const postsDirectory = join(process.cwd(), '__posts');
-const draftPostsDirectory = join(process.cwd(), '__posts/draft');
+const aboutMe = join(process.cwd(), '/manuscripts/about-me.md');
+
+const postsDirectory = join(process.cwd(), '/manuscripts/posts');
+const draftPostsDirectory = join(process.cwd(), '/manuscripts/posts/draft');
 
 const postSlugList: string[] = [];
 const draftPostSlugList: string[] = [];
@@ -79,4 +81,10 @@ export function getAllTags() {
   if (allPostList.length < 1) getAllPostList();
   tags.push(...uniq(flat(allPostList.map(post => post.meta.tags))));
   return tags;
+}
+
+export function getAboutMe() {
+  const fileContents = fs.readFileSync(aboutMe, 'utf8');
+  const { content } = matter(fileContents);
+  return content;
 }
