@@ -29,7 +29,7 @@ frontMatter = frontMatter.concat(
 
 frontMatter = frontMatter.concat('---\n\n# Head1\n\n## Head2\n\n### Head3');
 
-const filePath = `./__posts/draft/${args.slug}.md`;
+const filePath = `./manuscripts/posts/draft/${args.slug}.md`;
 
 fs.writeFile(filePath, frontMatter, error => {
   if (error) console.error('Failed : ', error);

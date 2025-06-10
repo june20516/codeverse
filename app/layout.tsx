@@ -2,18 +2,17 @@
 
 import './globals.css';
 
-import { Box, Grid2, ThemeProvider } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/material';
 import Head from 'next/head';
 import Script from 'next/script';
 import { Suspense, useRef } from 'react';
 
-import theme, { pxToRem } from '@/styles/theme';
+import theme from '@/styles/theme';
 
 import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Header from './components/Header';
 import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
 import MenuBar from './layouts/MenuBar';
-import { Global } from '@emotion/react';
 import GlobalCssVariables from './components/GlobalCssVariables';
 
 const metadata = {
@@ -80,7 +79,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
                 '::-webkit-scrollbar': {
                   display: 'none',
                 },
-                '-ms-overflow-style': 'none',
+                msOverflowStyle: 'none',
                 // 'scrollbar-width': 'none',
               }}>
               {children}
