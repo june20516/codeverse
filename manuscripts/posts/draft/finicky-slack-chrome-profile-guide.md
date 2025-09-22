@@ -1,3 +1,17 @@
+---
+title: macOS에서 Slack 링크를 원하는 Chrome 프로필로 열기 (Finicky 사용)
+description: 크롬을 조금 더 스마트하게 써보자
+date: 2024/12/13
+tags:
+  - finicky
+  - chrome
+  - slack
+categories:
+  - dev
+  - enhancement
+thumbnail:
+---
+
 # macOS에서 Slack 링크를 원하는 Chrome 프로필로 열기 (Finicky 사용)
 
 macOS에서 여러 개의 Chrome 프로필을 사용할 때, Slack 등 앱에서 URL을 클릭하면 항상 **기본 프로필로만 열리는 문제**가 있다. 업무/개인 프로필을 구분해서 사용하고 싶을 때, 불편함이 생긴다.
@@ -47,39 +61,39 @@ Profile Path: /Users/username/Library/Application Support/Google/Chrome/Profile 
 ```javascript
 export default {
   defaultBrowser: {
-    name: "Google Chrome",
-    profile: "준호 (개인)", // 기본값으로 사용할 프로필
+    name: 'Google Chrome',
+    profile: '준호 (개인)', // 기본값으로 사용할 프로필
   },
   handlers: [
     {
-      match: (_url, app) => app.opener && app.opener.bundleId === "com.tinyspeck.slackmacgap",
+      match: (_url, app) => app.opener && app.opener.bundleId === 'com.tinyspeck.slackmacgap',
       browser: {
-        name: "Google Chrome",
-        profile: "준호 (이즐랩스)",
+        name: 'Google Chrome',
+        profile: '준호 (이즐랩스)',
       },
     },
     {
-      match: (url) => url.hostname.includes("myezl.atlassian.net"),
+      match: url => url.hostname.includes('myezl.atlassian.net'),
       browser: {
-        name: "Google Chrome",
-        profile: "준호 (이즐랩스)",
+        name: 'Google Chrome',
+        profile: '준호 (이즐랩스)',
       },
     },
     {
-      match: (url) => url.hostname === "github.com" && url.pathname.startsWith("/ezllabs"),
+      match: url => url.hostname === 'github.com' && url.pathname.startsWith('/ezllabs'),
       browser: {
-        name: "Google Chrome",
-        profile: "준호 (이즐랩스)",
+        name: 'Google Chrome',
+        profile: '준호 (이즐랩스)',
       },
     },
     {
-      match: (url) => url.hostname.includes("figma.com"),
+      match: url => url.hostname.includes('figma.com'),
       browser: {
-        name: "Google Chrome",
-        profile: "준호 (이즐랩스)",
+        name: 'Google Chrome',
+        profile: '준호 (이즐랩스)',
       },
-    }
-  ]
+    },
+  ],
 };
 ```
 

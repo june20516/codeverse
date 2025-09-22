@@ -4,7 +4,6 @@ import './styles.css';
 import '@/styles/prism-duotone-dark.css';
 import Head from 'next/head';
 import PostDetail from './PostDetail';
-import { Box } from '@mui/material';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {

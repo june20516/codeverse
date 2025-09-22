@@ -7,6 +7,8 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  // MUI와의 충돌 방지를 위한 important 설정
+  important: '#__next',
   safelist: [
     { pattern: /ease-(linear|in|out|in-out)/ },
     'translate-y-[1px]',
@@ -34,13 +36,27 @@ module.exports = {
     ),
   ],
   plugins: [],
-
+  // MUI 컴포넌트와 충돌하지 않도록 prefix 설정 (선택사항)
+  // prefix: 'tw-',
+  
   theme: {
     extend: {
       animation: {
         'spin-slow': 'spin 3s linear infinite',
       },
       colors: {
+        // MUI 테마 색상과 매핑
+        'mui-primary': '#B782F4',
+        'mui-secondary': '#EF89E1',
+        'mui-action': '#F4A261',
+        'mui-info': '#5158d9',
+        'mui-error': '#EA3786',
+        'mui-background': '#080046',
+        'mui-text-primary': '#B782F4',
+        'mui-text-secondary': '#EF89E1',
+        'mui-divider': '#5158d9',
+        
+        // 기존 색상 유지
         primary: colors.indigo,
         secondary: colors.purple,
         warning: colors.yellow,

@@ -1,6 +1,32 @@
 /* @import '@/styles/markdown-css-github.css'; */
 
 .markdown-body {
+  & p,
+  & pre,
+  & code,
+  & blockquote,
+  & ul,
+  & ol,
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5 {
+    @apply leading-[170%];
+  }
+
+  & p,
+  & blockquote,
+  & ul,
+  & ol,
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5 {
+    color: var(--mui-palette-text-primary);
+  }
+
   & h1 {
     @apply text-4xl font-bold py-5;
     &::before {
@@ -37,10 +63,11 @@
     }
   }
   & p {
-    @apply pt-5 indent-3;
+    @apply pb-5 indent-3;
   }
   & code {
-    @apply bg-background-primary-200 text-primary-700 rounded-md px-1;
+    @apply bg-gray-200 rounded-md px-1;
+    color: #00796b;
   }
 
   & pre code {
@@ -53,7 +80,9 @@
   }
 
   & blockquote {
-    @apply bg-background-secondary-300 flex items-center p-5 text-primary-800 mb-5;
+    @apply flex items-center p-5 mb-5;
+    background-color: #e0e0e0;
+    color: #37474f;
     &::before {
       content: '〝';
       @apply text-2xl mr-3 self-start;
@@ -62,11 +91,12 @@
       @apply italic text-lg p-0 indent-0;
     }
   }
-  & pre {
-    @apply mt-4;
+  & pre[class*='language-'] {
+    @apply rounded-md mt-4 mb-4;
   }
   & a {
-    @apply text-secondary-800 hover:text-opacity-70;
+    @apply no-underline hover:opacity-100;
+    color: var(--mui-palette-action-active);
   }
   & ul {
     padding-left: 2rem;
@@ -77,6 +107,6 @@
     list-style-type: decimal;
   }
   & li::marker {
-    @apply text-primary-700;
+    color: var(--mui-palette-action-active);
   }
 }

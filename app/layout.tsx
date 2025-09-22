@@ -59,6 +59,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: theme.palette.background.default,
+            position: 'relative',
           }}>
           <Header layoutStyle={{ height: '10%' }} />
           <Box

@@ -15,9 +15,10 @@ interface PostDetailProps {
 const PostDetail = ({ post, meta, content }: PostDetailProps) => {
   const titleRef = useRef<HTMLDivElement>(null);
   const { isStickTop } = useScrollStore();
+  console.log('isStickTop', isStickTop);
 
   return (
-    <Box component={'article'} sx={{ position: 'relative' }}>
+    <Box component={'article'}>
       <Box
         ref={titleRef}
         sx={{
@@ -29,7 +30,20 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
           transition: 'all 0.3s',
           position: 'relative',
         }}>
-        <Typography variant="subtitle1">{post.meta.title}</Typography>
+        <Typography
+          variant="subtitle1"
+          sx={{
+            ...(isStickTop
+              ? {}
+              : {
+                  position: 'sticky',
+                  top: '5px',
+                  fontSize: '1.25rem',
+                  zIndex: 1000,
+                }),
+          }}>
+          {post.meta.title}
+        </Typography>
         <Typography
           variant="body2"
           color="textSecondary"
@@ -55,18 +69,19 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
         </Box>
       )}
 
-      <Box
-        component="img"
-        src={`/${meta.thumbnail}`}
-        sx={{
-          width: '90%',
-          margin: 'auto',
-          display: 'block',
-        }}
-        alt="thumbnail"
-        loading="lazy"
-      />
-
+      {meta.thumbnail && (
+        <Box
+          component="img"
+          src={`/${meta.thumbnail}`}
+          sx={{
+            width: '90%',
+            margin: 'auto',
+            display: 'block',
+          }}
+          alt="thumbnail"
+          loading="lazy"
+        />
+      )}
       <Box
         className="markdown-body post"
         sx={{ mb: 2 }}
