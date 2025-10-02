@@ -1,5 +1,28 @@
 const fs = require('fs');
 
+// Check for help flag
+const cliArgs = process.argv.slice(2);
+if (cliArgs.includes('-h') || cliArgs.includes('--help')) {
+  console.log(`
+사용법: node write.js [옵션]
+
+옵션:
+  --slug=<값>          [필수] 포스트 파일명 (예: my-post)
+  --title=<값>         포스트 제목 (기본값: "post template")
+  --description=<값>   포스트 설명 (기본값: "post's description")
+  --date=<값>          날짜 형식: yyyy/MM/DD( HH(:mm(:ss))) (기본값: 현재 시간)
+  --tags=<값>          태그 (공백으로 구분, 기본값: "some tags separated by space")
+  --categories=<값>    카테고리 (공백으로 구분, 기본값: "some categories separated by space")
+  --thumbnail=<값>     썸네일 경로 (기본값: "assets/images/posts/{img file name same as post slog}")
+  -h, --help           사용법 출력
+
+예시:
+  node write.js --slug=my-first-post
+  node write.js --slug=my-post --title="내 포스트" --date="2025/10/02 13:00"
+  `);
+  process.exit(0);
+}
+
 // Argument parser
 const parseArgs = args => {
   const parsedArgs = {};
@@ -10,7 +33,7 @@ const parseArgs = args => {
   });
   return parsedArgs;
 };
-const args = parseArgs(process.argv.slice(2));
+const args = parseArgs(cliArgs);
 
 if (!args.slug) throw new Error('`--slug` required.');
 
