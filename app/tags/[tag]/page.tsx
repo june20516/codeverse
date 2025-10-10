@@ -23,7 +23,7 @@ const Tag: NextPage<TagProps> = ({ params }: TagProps) => {
       <ListHeader tag={tag} count={tagedPosts.length} />
       <ol>
         {tagedPosts.map((post, index) => (
-          <PostListItem key={index} post={post} hasThumbnail={false} />
+          <PostListItem key={index} post={post} />
         ))}
       </ol>
     </>

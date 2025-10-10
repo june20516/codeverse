@@ -1,10 +1,10 @@
 'use client';
 
-import { useScrollStore } from '@/app/stores/scroll';
 import { Post, PostMeta } from '@/interfaces/PostType';
-import { useRef } from 'react';
-import { Box, Icon, Typography } from '@mui/material';
-import { FormatQuote } from '@mui/icons-material';
+import { Box, Typography, useTheme } from '@mui/material';
+import ArticleContainer from '@/app/components/ArticleContainer';
+import { getMetaThumbnail } from '@/lib/meta';
+import TagToken from '@/app/tags/components/TagToken';
 
 interface PostDetailProps {
   post: Post;
@@ -13,66 +13,102 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ post, meta, content }: PostDetailProps) => {
-  const titleRef = useRef<HTMLDivElement>(null);
-  const { isStickTop } = useScrollStore();
+  const theme = useTheme();
+  const thumbnail = getMetaThumbnail(meta.thumbnail);
 
+  const thumbnailContainerStyle = {
+    width: '100%',
+    height: { xs: '200px', sm: '300px', md: '400px' },
+    mb: { xs: 4, sm: 6 },
+    borderRadius: 3,
+    overflow: 'hidden',
+    backgroundColor: theme.palette.grey[100],
+  };
+
+  const thumbnailImageStyle = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover' as const,
+  };
+
+  const headerStyle = {
+    mb: { xs: 6, sm: 8 },
+    pb: { xs: 3, sm: 4 },
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  };
+
+  console.log('thumbnail in detail', thumbnail);
   return (
-    <Box component={'article'} sx={{ position: 'relative' }}>
-      <Box
-        ref={titleRef}
-        sx={{
-          fontWeight: 'bold',
-          textAlign: 'center',
-          p: 5,
-          maxHeight: '24rem',
-          minHeight: 'fit-content',
-          transition: 'all 0.3s',
-          position: 'relative',
-        }}>
-        <Typography variant="subtitle1">{post.meta.title}</Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{
-            textAlign: 'right',
-            fontStyle: 'italic',
-          }}>
-          - {meta.date}
-        </Typography>
-      </Box>
+    <ArticleContainer>
+      <Box component="article">
+        {/* Thumbnail */}
+        <Box sx={thumbnailContainerStyle}>
+          <img src={thumbnail} alt={meta.title} style={thumbnailImageStyle} />
+        </Box>
 
-      {meta.description && (
-        <Box
-          sx={{
-            boxSizing: 'border-box',
-            width: '100%',
-            p: 4,
-          }}>
-          <Typography variant="body1" color="info">
-            <FormatQuote />
-            {meta.description}
+        {/* Header */}
+        <Box component="header" sx={headerStyle}>
+          <Typography
+            variant="h1"
+            sx={{
+              mb: 3,
+              fontSize: { xs: theme.typography.h3.fontSize, sm: theme.typography.h2.fontSize, md: '2.5rem' },
+              lineHeight: { xs: 1.3, sm: 1.2 },
+            }}>
+            {post.meta.title}
+          </Typography>
+
+          {meta.description && (
+            <Typography
+              variant="body1"
+              sx={{
+                color: theme.palette.text.secondary,
+                mb: 3,
+                lineHeight: { xs: 1.7, sm: 1.8 },
+                fontSize: { xs: theme.typography.small.fontSize, sm: theme.typography.body1.fontSize },
+              }}>
+              {meta.description}
+            </Typography>
+          )}
+
+          <Typography
+            variant="micro"
+            sx={{
+              color: theme.palette.text.tertiary,
+            }}>
+            {meta.date}
           </Typography>
         </Box>
-      )}
 
-      <Box
-        component="img"
-        src={`/${meta.thumbnail}`}
-        sx={{
-          width: '90%',
-          margin: 'auto',
-          display: 'block',
-        }}
-        alt="thumbnail"
-        loading="lazy"
-      />
+        {/* Content */}
+        <Box className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
 
-      <Box
-        className="markdown-body post"
-        sx={{ mb: 2 }}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    </Box>
+        {/* Tags */}
+        {meta.tags && meta.tags.length > 0 && (
+          <Box
+            sx={{
+              mt: 6,
+              pt: 4,
+              borderTop: `1px solid ${theme.palette.divider}`,
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 1,
+            }}>
+            <Typography
+              variant="micro"
+              sx={{
+                color: theme.palette.text.tertiary,
+                verticalAlign: 'middle',
+              }}>
+              Tags
+            </Typography>
+            {meta.tags.map((tag, index) => (
+              <TagToken key={index} tag={tag} />
+            ))}
+          </Box>
+        )}
+      </Box>
+    </ArticleContainer>
   );
 };
 

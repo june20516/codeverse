@@ -1,10 +1,10 @@
 import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 import markdownToHtml from '@/lib/markdownToHTML';
-import './styles.css';
 import '@/styles/prism-duotone-dark.css';
-import Head from 'next/head';
+import './styles.css';
 import PostDetail from './PostDetail';
-import { Box } from '@mui/material';
+import { Metadata } from 'next';
+import { generatePostMetadata } from '@/lib/meta';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {
@@ -17,27 +17,17 @@ interface PostProps {
   params: { slug: string };
 }
 
+export async function generateMetadata({ params }: PostProps): Promise<Metadata> {
+  const post = getPostBySlug({ slug: params.slug });
+  return generatePostMetadata(post.meta);
+}
+
 const Post = async ({ params }: PostProps) => {
   const post = getPostBySlug({ slug: params.slug });
   const content = await markdownToHtml(post.content || '');
   const meta = post.meta;
-  const signedTitle = `${meta.title} - Bran's codeverse`;
-  return (
-    <>
-      <Head>
-        <title>{signedTitle}</title>
-        <meta content={meta.description} name="description" />
-        <meta property="og:site_name" content={signedTitle} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={signedTitle} />
-        <meta property="og:image" content={meta.thumbnail} />
-        <meta name="twitter:title" content={signedTitle} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.thumbnail} />
-      </Head>
-      <PostDetail post={post} meta={meta} content={content} />
-    </>
-  );
+
+  return <PostDetail post={post} meta={meta} content={content} />;
 };
 
 export default Post;
