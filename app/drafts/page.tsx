@@ -1,7 +1,7 @@
 import { PostSummary } from '@/interfaces/PostType';
 import { getAllDraftList } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
-import PostListItem from './components/PostListItem';
+import PostListItem from '@/app/posts/components/PostListItem';
 
 const Posts: NextPage = () => {
   const posts: PostSummary[] = getAllDraftList();
@@ -9,7 +9,7 @@ const Posts: NextPage = () => {
   return (
     <ol>
       {posts.map((post, index) => (
-        <PostListItem post={post} key={index} />
+        <PostListItem post={post} baseUrl="drafts" key={index} />
       ))}
     </ol>
   );

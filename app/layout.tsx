@@ -3,7 +3,6 @@
 import './globals.css';
 
 import { Box, ThemeProvider } from '@mui/material';
-import Head from 'next/head';
 import Script from 'next/script';
 import { Suspense, useRef } from 'react';
 
@@ -12,18 +11,13 @@ import theme from '@/styles/theme';
 import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Header from './components/Header';
 import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
-import MenuBar from './layouts/MenuBar';
 import GlobalCssVariables from './components/GlobalCssVariables';
-
-const metadata = {
-  title: "Bran's codeverse",
-  description: 'We are little dusts in the galaxy full of code',
-};
 
 const sideBarMenu = [
   { name: 'Posts', href: '/posts' },
   { name: 'Tags', href: '/tags' },
-  { name: 'About Me', href: '/about' },
+  { name: 'Lab', href: '/lab' },
+  { name: 'About', href: '/about' },
 ];
 
 const GA_MEASUREMENT_ID = process.env['GA_MEASUREMENT_ID'];
@@ -35,10 +29,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider theme={theme}>
       <GlobalCssVariables />
       <html lang="en">
-        <Head>
-          <title>{metadata.title}</title>
-          <meta name="description" content={metadata.description}></meta>
-        </Head>
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
         <Script
           id="google-analytics"
@@ -55,36 +45,24 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <Box
           component={'body'}
           sx={{
-            height: '100vh',
+            minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: theme.palette.background.default,
-            position: 'relative',
           }}>
-          <Header layoutStyle={{ height: '10%' }} />
+          <Header menuList={sideBarMenu} />
           <Box
-            component={'main'}
+            component="main"
+            ref={wrapperRef}
             sx={{
-              height: '90%',
-              width: theme.breakpoints.values.md,
+              flex: 1,
+              width: '100%',
+              maxWidth: '1024px',
               mx: 'auto',
-              display: 'flex',
-              flexDirection: 'column',
+              px: { xs: 3, sm: 4, md: 6 },
+              py: 6,
             }}>
-            <MenuBar menuList={sideBarMenu} />
-            <Box
-              component="section"
-              ref={wrapperRef}
-              sx={{
-                overflow: 'scroll',
-                '::-webkit-scrollbar': {
-                  display: 'none',
-                },
-                msOverflowStyle: 'none',
-                // 'scrollbar-width': 'none',
-              }}>
-              {children}
-            </Box>
+            {children}
           </Box>
 
           <Suspense fallback={null}>
