@@ -58,7 +58,11 @@ export function getAllPostList() {
   allPostList.push(
     ...slugs
       .map(slug => getPostBySlug({ slug }))
-      .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1)),
+      .sort((post1, post2) => {
+        const date1 = new Date(post1.meta.date);
+        const date2 = new Date(post2.meta.date);
+        return date2.getTime() - date1.getTime();
+      }),
   );
   return allPostList;
 }
@@ -71,7 +75,11 @@ export function getAllDraftList() {
   allDfratList.push(
     ...slugs
       .map(slug => getPostBySlug({ slug, isDraft }))
-      .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1)),
+      .sort((post1, post2) => {
+        const date1 = new Date(post1.meta.date);
+        const date2 = new Date(post2.meta.date);
+        return date2.getTime() - date1.getTime();
+      }),
   );
   return allDfratList;
 }
