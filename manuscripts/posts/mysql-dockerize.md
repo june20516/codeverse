@@ -9,7 +9,7 @@ tags:
   - container
   - docker
   - mysql
-thumbnail: assets/images/posts/mysql-dockerize.jpeg
+thumbnail: assets/images/posts/thumbnails/mysql-dockerize.jpeg
 ---
 
 최근 작업 중 DB 스키마 변경이 로컬 개발 환경에 영향을 미치는 일이 자주 발생했다. 이를 방지하기 위해 로컬에서 실행 중인 MySQL을 도커로 격리하여 실행하기로 했다.

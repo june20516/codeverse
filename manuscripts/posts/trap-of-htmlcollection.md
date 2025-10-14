@@ -10,7 +10,7 @@ tags:
 categories:
   - dev
   - web
-thumbnail: assets/images/posts/trap-of-htmlcollection.jpeg
+thumbnail: assets/images/posts/thumbnails/trap-of-htmlcollection.jpeg
 ---
 
 ```html

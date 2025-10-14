@@ -8,7 +8,7 @@ import { flat, uniq } from '@/utils';
 const aboutMe = join(process.cwd(), '/manuscripts/about-me.md');
 
 const postsDirectory = join(process.cwd(), '/manuscripts/posts');
-const draftPostsDirectory = join(process.cwd(), '/manuscripts/posts/draft');
+const draftsDirectory = join(process.cwd(), '/manuscripts/drafts');
 
 const postSlugList: string[] = [];
 const draftPostSlugList: string[] = [];
@@ -21,7 +21,7 @@ const tags: string[] = [];
 export function getPostSlugs(options?: { isDraft?: boolean }) {
   const isDraft = options?.isDraft ?? false;
   const slugList = isDraft ? draftPostSlugList : postSlugList;
-  const directory = isDraft ? draftPostsDirectory : postsDirectory;
+  const directory = isDraft ? draftsDirectory : postsDirectory;
   if (slugList.length > 0) {
     return slugList;
   }
@@ -37,7 +37,7 @@ export function getPostSlugs(options?: { isDraft?: boolean }) {
 
 export function getPostBySlug({ slug, isDraft }: { slug: string; isDraft?: boolean }): Post {
   const list = isDraft ? allDfratList : allPostList;
-  const directory = isDraft ? draftPostsDirectory : postsDirectory;
+  const directory = isDraft ? draftsDirectory : postsDirectory;
   if (list.length > 0) {
     const loadedPost = list.filter(post => post.slug === slug);
     if (loadedPost.length > 0) {
