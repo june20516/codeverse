@@ -1,6 +1,6 @@
 import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 import markdownToHtml from '@/lib/markdownToHTML';
-import '@/styles/prism-duotone-dark.css';
+import '@/styles/prism-one-light.css';
 import '@/app/posts/[slug]/styles.css';
 import PostDetail from '@/app/posts/[slug]/PostDetail';
 import { Metadata } from 'next';
