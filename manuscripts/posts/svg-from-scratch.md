@@ -5,7 +5,7 @@ tags:
   - svg
   - path
   - progress
-thumbnail: assets/images/posts/svg-from-scratch.png
+thumbnail: assets/images/posts/thumbnails/svg-from-scratch.png
 ---
 
 SVG(Scalable Vector Graphics)는 XML 기반의 마크업 언어로, 웹에서 확장 가능한 벡터 그래픽을 만드는 데 사용된다.

@@ -1,6 +1,6 @@
 ---
 title: Mermaid - Markdown에서 다이어그램 그리기
-date: 2024/8/1
+date: 2024/08/1
 tags:
   - mermaid
   - flowchart
@@ -9,7 +9,7 @@ tags:
   - Markdown
   - 시각화
   - 개발 도구
-thumbnail: assets/images/posts/mermaid.png
+thumbnail: assets/images/posts/thumbnails/mermaid.png
 ---
 
 개발 문서나 기술 블로그를 작성할 때 다이어그램은 개념을 시각적으로 쉽게 이해할 수 있도록 돕는 중요한 요소다. 그런데 기존의 다이어그램 작성 도구는 이미지 파일로 다이어그램을 관리해야 하고, 수정할 때마다 번거롭다. 이 문제를 해결하기 위해 "Mermaid"라는 도구를 알게 되어 소개한다.
@@ -48,7 +48,7 @@ D --> E[종료]
 위 코드를 작성하면, 다음과 같은 플로우차트가 그려진다:
 
 <div style="text-align: center;">
-  <img src="/assets/images/posts/mermaid-example.png" alt="다이어그램" width="400" />
+  <img src="/assets/images/posts/introduce-mermaid/mermaid-example.png" alt="다이어그램" width="400" />
 </div>
 
 - A에서 시작해 B에서 조건을 확인하고,

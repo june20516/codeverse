@@ -11,7 +11,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "server": "next build && npx http-server out",
     "deploy-init": "git remote add gh-page https://github.com/june20516/june20516.github.io.git",
-		"deploy": "git pull origin main && rm -rf node_modules/.cache && next build && touch out/.nojekyll && git add ./out && git commit -m \"[publish]$(date +\"%H:%M, %d/%m/%Y\")\" && git subtree push --prefix out gh-page main; && git push origin main",
+    "deploy": "git pull origin main && rm -rf node_modules/.cache && next build && touch out/.nojekyll && git add ./out && git commit -m \"[publish]$(date +\"%H:%M, %d/%m/%Y\")\" && git subtree push --prefix out gh-page main; && git push origin main",
     "write": "node commands/write.js"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "remark-html": "^15.0.2",
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
+    "sharp": "^0.34.4",
     "typescript": "5.0.4",
     "unified": "^10.1.2",
     "zustand": "^4.4.7"

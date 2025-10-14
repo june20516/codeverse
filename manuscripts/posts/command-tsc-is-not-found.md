@@ -6,7 +6,7 @@ tags:
   - Node
   - tsc
   - typescript
-thumbnail: assets/images/posts/command-tsc-is-not-found.png
+thumbnail: assets/images/posts/thumbnails/command-tsc-is-not-found.png
 ---
 
 Node.js 환경에서 NestJS 프레임워크를 사용하기 위해 TypeScript를 설정하다가 `Command 'tsc' is not found`라는 에러가 발생했다. 분명 여러 번 tsc를 설치했음에도 불구하고, 명령어를 찾을 수 없다고 나오며, 라이브러리 리스트에서는 설치가 완료된 것으로 보였다. Yarn과 npm을 모두 사용해 봤지만 결과는 같았다.

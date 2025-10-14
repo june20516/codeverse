@@ -10,7 +10,7 @@ tags:
   - sed
   - sql_mode
   - ssh tunneling
-thumbnail: assets/images/posts/rds-dump.png
+thumbnail: assets/images/posts/thumbnails/rds-dump.png
 ---
 
 ## ssh tunneling을 통해 DB dump해오기

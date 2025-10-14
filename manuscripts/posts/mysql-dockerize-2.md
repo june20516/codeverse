@@ -2,7 +2,7 @@
 title: mysql dockerize(2) - mysql container에 볼륨 설정하기
 date: 2021/11/13
 description: 로컬 환경을 안전하게 보호하기 위해 MySQL을 도커로 격리하여 실행하는 과정을 기록한다.
-thumbnail: assets/images/posts/mysql-dockerize.jpeg
+thumbnail: assets/images/posts/thumbnails/mysql-dockerize.jpeg
 tags:
   - container
   - docker
