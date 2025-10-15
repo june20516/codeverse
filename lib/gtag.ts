@@ -1,7 +1,6 @@
 'use client';
 
-// const GA_MEASUREMENT_ID = 'G-Q587R5F0YL';
-const GA_MEASUREMENT_ID: string = process.env['GA_MESUREMENT_ID'] as string;
+export const GA_MEASUREMENT_ID: string = process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] as string;
 
 type GTagEvent = {
   action: string;
@@ -12,6 +11,8 @@ type GTagEvent = {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL) => {
+  console.log('ga_measurement_id', GA_MEASUREMENT_ID);
+  console.log('window.gtag', window.gtag);
   window.gtag('config', GA_MEASUREMENT_ID, {
     page_path: url,
   });

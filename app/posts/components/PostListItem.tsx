@@ -52,7 +52,6 @@ const PostListItem = ({ post, baseUrl = 'posts' }: PostListItemProps) => {
     minWidth: 0,
   };
 
-  console.log('thumbnail in list', thumbnail);
   return (
     <Link href={`${baseUrl}/${post.slug}`} style={{ textDecoration: 'none' }}>
       <Box sx={containerStyle}>
@@ -79,7 +78,10 @@ const PostListItem = ({ post, baseUrl = 'posts' }: PostListItemProps) => {
                   fontWeight: 500,
                   color: theme.palette.text.primary,
                   transition: 'color 0.2s ease',
-                  fontSize: { xs: theme.typography.label.fontSize, sm: theme.typography.h6.fontSize },
+                  fontSize: {
+                    xs: theme.typography.label.fontSize,
+                    sm: theme.typography.h6.fontSize,
+                  },
                 }}>
                 {post.meta.title}
               </Typography>

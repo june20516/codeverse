@@ -12,6 +12,7 @@ import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Header from './components/Header';
 import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
 import GlobalCssVariables from './components/GlobalCssVariables';
+import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 
 const sideBarMenu = [
   { name: 'Posts', href: '/posts' },
@@ -19,8 +20,6 @@ const sideBarMenu = [
   { name: 'Lab', href: '/lab' },
   { name: 'About', href: '/about' },
 ];
-
-const GA_MEASUREMENT_ID = process.env['GA_MEASUREMENT_ID'];
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const wrapperRef = useRef<HTMLElement>(null);
@@ -37,7 +36,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-   
+
             gtag('config', '${GA_MEASUREMENT_ID}');
           `,
           }}
