@@ -5,7 +5,6 @@ import PostListItem from '@/app/posts/components/PostListItem';
 
 const Posts: NextPage = () => {
   const posts: PostSummary[] = getAllDraftList();
-  console.log(posts);
   return (
     <ol>
       {posts.map((post, index) => (

@@ -11,8 +11,6 @@ type GTagEvent = {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL) => {
-  console.log('ga_measurement_id', GA_MEASUREMENT_ID);
-  console.log('window.gtag', window.gtag);
   window.gtag('config', GA_MEASUREMENT_ID, {
     page_path: url,
   });

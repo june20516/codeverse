@@ -37,7 +37,6 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
     borderBottom: `1px solid ${theme.palette.divider}`,
   };
 
-  console.log('thumbnail in detail', thumbnail);
   return (
     <ArticleContainer>
       <Box component="article">
@@ -52,7 +51,11 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
             variant="h1"
             sx={{
               mb: 3,
-              fontSize: { xs: theme.typography.h3.fontSize, sm: theme.typography.h2.fontSize, md: '2.5rem' },
+              fontSize: {
+                xs: theme.typography.h3.fontSize,
+                sm: theme.typography.h2.fontSize,
+                md: '2.5rem',
+              },
               lineHeight: { xs: 1.3, sm: 1.2 },
             }}>
             {post.meta.title}
@@ -65,7 +68,10 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
                 color: theme.palette.text.secondary,
                 mb: 3,
                 lineHeight: { xs: 1.7, sm: 1.8 },
-                fontSize: { xs: theme.typography.small.fontSize, sm: theme.typography.body1.fontSize },
+                fontSize: {
+                  xs: theme.typography.small.fontSize,
+                  sm: theme.typography.body1.fontSize,
+                },
               }}>
               {meta.description}
             </Typography>
