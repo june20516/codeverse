@@ -29,6 +29,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <GlobalCssVariables />
       <html lang="en">
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+        <meta
+          name="google-site-verification"
+          content="i0Iq4sKjYlVS7Q9gq9KkCPl4hdoADOzOsTyFnCV24Os"
+        />
         <Script
           id="google-analytics"
           dangerouslySetInnerHTML={{
