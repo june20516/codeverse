@@ -9,10 +9,18 @@ type GTagEvent = {
   value: number;
 };
 
+type PageViewParams = {
+  referrer?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+};
+
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: URL) => {
+export const pageview = (url: URL, params?: PageViewParams) => {
   window.gtag('config', GA_MEASUREMENT_ID, {
-    page_path: url,
+    url,
+    ...(params || {}),
   });
 };
 
@@ -22,5 +30,21 @@ export const event = ({ action, category, label, value }: GTagEvent) => {
     event_category: category,
     event_label: label,
     value: value,
+  });
+};
+
+// 외부 링크 클릭 추적
+export const trackExternalLink = (url: string) => {
+  window.gtag('event', 'click', {
+    event_category: 'external_link',
+    event_label: url,
+  });
+};
+
+// 내부 링크 클릭 추적
+export const trackInternalLink = (url: string) => {
+  window.gtag('event', 'click', {
+    event_category: 'internal_link',
+    event_label: url,
   });
 };
