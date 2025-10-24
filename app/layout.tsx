@@ -28,6 +28,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider theme={theme}>
       <GlobalCssVariables />
       <html lang="en">
+        <head>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/june20516/orbithall@widget/v1.1.1/static/embed.css"
+          />
+        </head>
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
         <meta
           name="google-site-verification"
@@ -43,6 +49,16 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
             gtag('config', '${GA_MEASUREMENT_ID}');
           `,
+          }}
+        />
+        <Script
+          src="https://cdn.jsdelivr.net/gh/june20516/orbithall@widget/v1.1.1/static/embed.js"
+          onLoad={() => {
+            if (window.OrbitHall && process.env.NEXT_PUBLIC_ORBITHALL_API_KEY) {
+              window.OrbitHall.init({
+                apiKey: process.env.NEXT_PUBLIC_ORBITHALL_API_KEY,
+              });
+            }
           }}
         />
         <Box
