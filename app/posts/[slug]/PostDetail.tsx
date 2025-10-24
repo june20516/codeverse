@@ -113,6 +113,16 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
             ))}
           </Box>
         )}
+
+        {/* Comments */}
+        <Box
+          sx={{
+            mt: 8,
+            pt: 6,
+            borderTop: `1px solid ${theme.palette.divider}`,
+          }}>
+          <div data-orb-container data-widget-type="comments" data-post-slug={post.slug} />
+        </Box>
       </Box>
     </ArticleContainer>
   );
