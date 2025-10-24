@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /drafts/
+
+Sitemap: undefined/sitemap.xml
