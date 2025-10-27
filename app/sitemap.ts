@@ -6,40 +6,40 @@ const siteUrl = process.env.HOST_URL;
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${siteUrl}/`,
+      url: encodeURI(`${siteUrl}/`),
       lastModified: new Date(),
     },
     {
-      url: `${siteUrl}/about`,
+      url: encodeURI(`${siteUrl}/about`),
       lastModified: new Date(),
     },
     {
-      url: `${siteUrl}/posts`,
+      url: encodeURI(`${siteUrl}/posts`),
       lastModified: new Date(),
     },
     {
-      url: `${siteUrl}/tags`,
+      url: encodeURI(`${siteUrl}/tags`),
       lastModified: new Date(),
     },
     {
-      url: `${siteUrl}/lab`,
+      url: encodeURI(`${siteUrl}/lab`),
       lastModified: new Date(),
     },
     {
-      url: `${siteUrl}/lab/space-today`,
+      url: encodeURI(`${siteUrl}/lab/space-today`),
       lastModified: new Date(),
     },
   ];
 
   const posts = getAllPostList();
   const postRoutes: MetadataRoute.Sitemap = posts.map(post => ({
-    url: `${siteUrl}/posts/${post.slug}`,
+    url: encodeURI(`${siteUrl}/posts/${post.slug}`),
     lastModified: new Date(post.meta.date),
   }));
 
   const tags = getAllTags();
   const tagRoutes: MetadataRoute.Sitemap = tags.map(tag => ({
-    url: `${siteUrl}/tags/${tag}`,
+    url: encodeURI(`${siteUrl}/tags/${tag}`),
     lastModified: new Date(),
   }));
 
