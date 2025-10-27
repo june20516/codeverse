@@ -2,7 +2,13 @@ import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
 import { MetadataRoute } from 'next';
 
 const siteUrl = process.env.HOST_URL;
-const encodeRFC3986 = (str: string) => new URLSearchParams({ k: str }).toString().split('=')[1];
+const encodeExtendedRFC3986 = (string: string) =>
+  encodeURIComponent(string).replace(
+    /[!'()*]/g,
+    char =>
+      // 각 문자를 퍼센트 인코딩된 값으로 변환
+      '%' + char.charCodeAt(0).toString(16).toUpperCase(),
+  );
 
 const buildUrl = ({
   path,
@@ -13,9 +19,9 @@ const buildUrl = ({
 }) => {
   let url = siteUrl;
   const pathSegment = Array.isArray(path)
-    ? path.map(encodeRFC3986).join('/')
+    ? path.map(encodeExtendedRFC3986).join('/')
     : typeof path === 'string'
-    ? encodeRFC3986(path)
+    ? encodeExtendedRFC3986(path)
     : '';
   const paramSegment = new URLSearchParams(params).toString();
 
