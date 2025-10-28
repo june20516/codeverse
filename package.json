@@ -12,6 +12,7 @@
     "server": "next build && npx http-server out",
     "deploy-init": "git remote add gh-page https://github.com/june20516/june20516.github.io.git",
     "deploy": "git pull origin main && rm -rf node_modules/.cache && next build && touch out/.nojekyll && git add ./out && git commit -m \"[publish]$(date +\"%H:%M, %d/%m/%Y\")\" && git subtree push --prefix out gh-page main && git push origin main",
+    "onair-force": "git push gh-page `git subtree split --prefix out`:main --force",
     "write": "node commands/write.js"
   },
   "dependencies": {
