@@ -2,6 +2,8 @@ import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
 import { MetadataRoute } from 'next';
 
 const siteUrl = process.env.HOST_URL;
+
+// google search console에서 요구하는 기준을 충족하는 인코딩 함수
 const encodeExtendedRFC3986 = (string: string) =>
   encodeURIComponent(string).replace(
     /[!'()*]/g,
