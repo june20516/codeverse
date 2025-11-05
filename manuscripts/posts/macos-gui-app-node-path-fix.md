@@ -18,7 +18,7 @@ thumbnail: assets/images/posts/thumbnails/macos-gui-app-node-path-fix.png
 
 프로젝트에서 i18n Ally 익스텐션을 사용하고 있었는데, 분명히 정상 작동하던 것이 어느 날 갑자기 고장났다. 로그를 확인해보니 이런 에러가 나오고 있었다
 
-```
+```sh
 🐛 Failed to load Error: Command failed: node "/Users/bran/.windsurf/extensions/lokalise.i18n-ally-2.13.1-universal/node_modules/ts-node/dist/bin.js" ...
 /bin/sh: node: command not found
 ```
@@ -71,6 +71,7 @@ nvm alias default 22.18.0
 ```
 
 nvm은 `default`라는 이름으로 심볼릭 링크를 생성한다
+
 ```
 ~/.nvm/versions/node/default -> ~/.nvm/versions/node/v22.18.0
 ```
@@ -150,7 +151,7 @@ killall Dock
 
 ```
 ✅ Loading finished
-📂 Loading locales under /Users/bran/repositories/front-taap-stpm/src/constants/locales
+📂 Loading locales under /Users/bran/my-project/src/constants/locales
     📑 Loading (en) en.ts
     📑 Loading (ko) ko.ts
 ```
