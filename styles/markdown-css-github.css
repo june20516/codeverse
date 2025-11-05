@@ -234,11 +234,11 @@
 }
 .markdown-body h5 {
   font-weight: 600;
-  font-size: 0.875em;
+  font-size: 0.975em;
 }
 .markdown-body h6 {
   font-weight: 600;
-  font-size: 0.85em;
+  font-size: 0.95em;
   color: var(--mui-palette-text-secondary);
 }
 .markdown-body p {
