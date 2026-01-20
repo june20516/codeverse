@@ -7,7 +7,7 @@ tags:
   - Connect RPC
   - Protobuf
   - gRPC
-  - TypeScript
+  - typescript
 categories:
   - dev
   - architecture
@@ -40,7 +40,7 @@ interface ProfileResponse {
 const response = await axios.get<ProfileResponse>('/profiles/me');
 ```
 
-이 방식의 문제는:
+이 방식은 종종 이런 문제를 야기할 수 있다.
 
 1. **(그럴 일은 절대 없어야 하지만)백엔드가 API를 일방적으로 변경하면 프론트엔드는 런타임 에러가 나서야 안다**
 2. **타입 정의가 실제 API와 달라져도 TypeScript는 모른다**
@@ -63,7 +63,7 @@ service ProfileService {
 }
 ```
 
-이 스키마에서 TypeScript 타입과 클라이언트 코드가 자동 생성되므로:
+이 스키마에서 TypeScript 타입과 클라이언트 코드가 자동 생성되므로 아래와 같은 효과를 볼 수 있다.
 
 1. **백엔드가 스키마를 바꾸면 프론트엔드의 타입이 컴파일 타임에 깨진다**
 2. **타입 정의가 항상 실제 API와 일치한다**
@@ -87,7 +87,7 @@ proto/
   └── buf.yaml
 ```
 
-proto 파일 예시:
+proto 파일 예시
 
 ```protobuf
 // myapp/v1/auth.proto
@@ -132,7 +132,7 @@ yarn add @connectrpc/connect @connectrpc/connect-web @bufbuild/protobuf
 yarn add -D @bufbuild/buf @bufbuild/protoc-gen-es @connectrpc/protoc-gen-connect-es
 ```
 
-각 패키지의 역할:
+각 패키지의 역할
 
 - `@connectrpc/connect`: Connect RPC 핵심 라이브러리
 - `@connectrpc/connect-web`: HTTP/1.1 기반 transport (React Native 호환)
@@ -177,7 +177,7 @@ package.json에 코드 생성 스크립트를 추가한다.
 yarn generate
 ```
 
-이제 `gen/` 폴더에 TypeScript 코드가 자동 생성된다:
+이제 `gen/` 폴더에 TypeScript 코드가 자동 생성된다.
 
 ```
 gen/
@@ -190,7 +190,7 @@ gen/
           └── ...
 ```
 
-생성된 코드 예시:
+생성된 코드 예시
 
 ```typescript
 // gen/myapp/v1/auth_pb.ts
@@ -289,10 +289,10 @@ Connect의 인터셉터는 axios의 인터셉터와 비슷하지만 더 type-saf
 
 ## 7. 에러 핸들링
 
-Connect RPC에서는 두 가지 에러 처리 방식이 있다:
+Connect RPC에서는 두 가지 에러 처리 방식이 있다.
 
-1. **Network/Protocol 에러**: Connect의 기본 `ConnectError` (네트워크 장애, 인증 실패 등)
-2. **비즈니스 로직 에러**: Protobuf로 정의된 `Error` 메시지
+1. **Network/Protocol 에러** - Connect의 기본 `ConnectError` (네트워크 장애, 인증 실패 등)
+2. **비즈니스 로직 에러** - Protobuf로 정의된 `Error` 메시지
 
 먼저 proto에 Error 메시지를 정의한다.
 
@@ -391,7 +391,7 @@ export const handleConnectError = (error: unknown): ApplicationError => {
   if (error instanceof Error) {
     return new ApplicationError(
       ErrorCode.INTERNAL,
-      error.message || '알 수 없는 오류가 발생했습니다'
+      error.message || '알 수 없는 오류가 발생했습니다',
     );
   }
 
@@ -464,11 +464,11 @@ export const createAuthInterceptor = (): Interceptor => next => async req => {
 };
 ```
 
-이 패턴을 사용하면:
+이렇게 함으로써 이제 에러를 보다 편하게 다룰 수 있다.
 
-1. **타입 안전한 에러 처리**: ErrorCode enum으로 가능한 에러를 컴파일 타임에 알 수 있음
-2. **중앙화된 에러 처리**: 인터셉터에서 공통 에러 로직 처리
-3. **명시적인 에러 흐름**: oneof를 통해 성공/실패가 proto 레벨에서 명확히 구분됨
+1. **타입 안전한 에러 처리** - ErrorCode enum으로 가능한 에러를 컴파일 타임에 알 수 있음
+2. **중앙화된 에러 처리** - 인터셉터에서 공통 에러 로직 처리
+3. **명시적인 에러 흐름** - oneof를 통해 성공/실패가 proto 레벨에서 명확히 구분됨
 
 ## 8. API 레이어 마이그레이션
 
@@ -534,7 +534,7 @@ export const authApi = {
 };
 ```
 
-변경된 점:
+변경된 점은 다음과 같다.
 
 1. **타입을 수동으로 정의하지 않는다** - proto에서 자동 생성됨
 2. **URL 경로를 하드코딩하지 않는다** - 서비스 정의에 포함됨
@@ -612,7 +612,7 @@ API 레이어만 교체했으므로 컴포넌트 코드는 전혀 수정하지 �
 yarn remove axios
 ```
 
-기존에 axios를 사용하던 파일들도 삭제한다:
+기존에 axios를 사용하던 파일들도 삭제한다.
 
 ```bash
 rm api/client.ts  # axios 클라이언트
@@ -632,9 +632,9 @@ console.log(profile.nickname); // ❌ TypeScript 에러: 'nickname' does not exi
 
 ### 개발 경험 개선
 
-1. **자동 완성이 정확하다**: proto에 정의된 필드만 자동 완성됨
-2. **리팩토링이 안전하다**: 필드명을 바꾸면 사용하는 모든 곳에서 에러 발생
-3. **문서가 필요 없다**: proto 파일이 곧 API 명세서
+1. **자동 완성이 정확하다** - proto에 정의된 필드만 자동 완성됨
+2. **리팩토링이 안전하다** - 필드명을 바꾸면 사용하는 모든 곳에서 에러 발생
+3. **문서가 필요 없다** - proto 파일이 곧 API 명세서
 
 ### 유지보수 비용 감소
 
@@ -646,8 +646,8 @@ console.log(profile.nickname); // ❌ TypeScript 에러: 'nickname' does not exi
 
 Connect RPC는 binary(Protobuf)와 JSON 두 가지 포맷을 지원한다. `createConnectTransport`는 기본적으로 binary 포맷을 사용하므로, 별도 설정 없이도 binary의 이점을 누릴 수 있다.
 
-- **Binary (기본값)**: 더 작은 페이로드, 더 빠른 직렬화/역직렬화
-- **JSON**: 디버깅이 쉬움 (네트워크 탭에서 내용 확인 가능)
+- **Binary (기본값)** - 더 작은 페이로드, 더 빠른 직렬화/역직렬화
+- **JSON** - 디버깅이 쉬움 (네트워크 탭에서 내용 확인 가능)
 
 Proto 스키마의 타입 안전성을 유지하면서 실제 통신 데이터 포맷은 선택할 수 있다는 것이 Connect RPC의 큰 장점이다. 개발 환경에서 디버깅이 필요하다면 JSON으로, 프로덕션에서는 Binary로 전환하는 것도 가능하다.
 

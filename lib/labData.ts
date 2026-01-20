@@ -22,7 +22,7 @@ export const labItems: LabItem[] = [
     id: 'scramble-text',
     title: 'scramble Text',
     description: '슬롯머신처럼 랜덤한 글자를 거쳐 텍스트를 보여주는 애니메이션',
-    thumbnail: '/assets/images/lab/scramble-text.png',
+    thumbnail: '/assets/images/lab/unicode-scramble.png',
     features: ['bare animation', 'text animation'],
     createdAt: '2026-01-20',
     path: '/lab/scramble-text',

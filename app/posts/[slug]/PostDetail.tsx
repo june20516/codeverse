@@ -1,7 +1,7 @@
 'use client';
 
 import { Post, PostMeta } from '@/interfaces/PostType';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Link, Typography, useTheme } from '@mui/material';
 import ArticleContainer from '@/app/components/ArticleContainer';
 import { getMetaThumbnail } from '@/lib/meta';
 import TagToken from '@/app/tags/components/TagToken';
@@ -109,7 +109,9 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
               Tags
             </Typography>
             {meta.tags.map((tag, index) => (
-              <TagToken key={index} tag={tag} />
+              <Link key={index} href={`/tags/${tag}`}>
+                <TagToken tag={tag} />
+              </Link>
             ))}
           </Box>
         )}
