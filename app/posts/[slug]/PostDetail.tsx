@@ -109,7 +109,7 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
               Tags
             </Typography>
             {meta.tags.map((tag, index) => (
-              <Link key={index} href={`/tags/${tag}`}>
+              <Link key={index} href={`/tags/${tag.toLowerCase()}`}>
                 <TagToken tag={tag} />
               </Link>
             ))}

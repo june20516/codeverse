@@ -6,9 +6,12 @@ import ListHeader from './components/ListHeader';
 
 export async function generateStaticParams() {
   const tags = getAllTags().map(tag => {
-    return { tag: tag };
+    return { tag: tag.toLowerCase() };
   });
-  return tags;
+
+  const uniqueTags = Array.from(new Set(tags.map(t => t.tag))).map(tag => ({ tag }));
+
+  return uniqueTags;
 }
 
 interface TagProps {
@@ -16,11 +19,15 @@ interface TagProps {
 }
 
 const Tag: NextPage<TagProps> = ({ params }: TagProps) => {
-  const tag = ensureDecoded(params.tag);
-  const tagedPosts = getAllPostList().filter(post => post.meta.tags?.includes(tag));
+  const tagParam = ensureDecoded(params.tag).toLowerCase();
+  const tagedPosts = getAllPostList().filter(post =>
+    post.meta.tags?.some(t => t.toLowerCase() === tagParam),
+  );
+
+  const displayTag = tagedPosts[0]?.meta.tags?.find(t => t.toLowerCase() === tagParam) || tagParam;
   return (
     <>
-      <ListHeader tag={tag} count={tagedPosts.length} />
+      <ListHeader tag={displayTag} count={tagedPosts.length} />
       <ol>
         {tagedPosts.map((post, index) => (
           <PostListItem key={index} post={post} />
