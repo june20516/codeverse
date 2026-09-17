@@ -1,6 +1,6 @@
 ---
-title: "fzf로 셸 히스토리 다시 꺼내 쓰기, ag"
-description: "그 명령, 뭐였더라"
+title: 'fzf로 셸 히스토리 다시 꺼내 쓰기, ag'
+description: '그 명령, 뭐였더라'
 date: 2026/09/17
 tags:
   - zsh
@@ -10,7 +10,7 @@ tags:
 categories:
   - dev
   - enhancement
-thumbnail: assets/images/posts/thumbnails/zsh-history-picker-ag.png
+thumbnail: assets/images/posts/thumbnails/zsh-history-picker-ag.jpeg
 ---
 
 # fzf로 셸 히스토리 다시 꺼내 쓰기, ag
