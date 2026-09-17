@@ -52,11 +52,22 @@ const ClaudeToolCard = ({ tool }: ClaudeToolCardProps) => {
     },
   };
 
+  // styles/reset.css의 `a:hover, a:focus { color: inherit }`가 MUI 버튼 클래스보다 우선하므로,
+  // <a>로 렌더링되는 버튼은 hover·focus 글자색을 직접 지정한다
+  const repoButtonStyle = {
+    '&:hover, &:focus': {
+      color: theme.palette.primary.contrastText,
+    },
+  };
+
   const relatedPostButtonStyle = {
     justifyContent: 'flex-start',
     textAlign: 'left',
     borderColor: theme.palette.divider,
     color: theme.palette.text.primary,
+    '&:hover, &:focus': {
+      color: theme.palette.text.primary,
+    },
     '&:hover': {
       borderColor: theme.palette.text.tertiary,
       backgroundColor: theme.palette.action.hover,
@@ -113,7 +124,8 @@ const ClaudeToolCard = ({ tool }: ClaudeToolCardProps) => {
           variant="contained"
           disableElevation
           startIcon={<GitHubIcon />}
-          endIcon={<NorthEastRoundedIcon sx={{ fontSize: '1rem !important' }} />}>
+          endIcon={<NorthEastRoundedIcon sx={{ fontSize: '1rem !important' }} />}
+          sx={repoButtonStyle}>
           GitHub
         </Button>
         {tool.relatedPosts.map(post => (
