@@ -1,6 +1,11 @@
 import { Metadata } from 'next';
 import { PostMeta } from '@/interfaces/PostType';
 
+// og:image·twitter:image의 상대 경로를 절대 URL로 바꾸는 기준 주소.
+// 지정하지 않으면 Next.js가 빌드 시 http://localhost:3000을 붙여 공유 미리보기 이미지가 깨진다.
+const SITE_URL = process.env.HOST_URL || 'https://june20516.github.io';
+export const metadataBase = new URL(SITE_URL);
+
 export const getMetaTitle = (title?: string) => {
   return title ? `${title} - Bran's codeverse` : "Bran's codeverse";
 };
@@ -24,6 +29,7 @@ export const generatePostMetadata = (meta: PostMeta, isDraft = false): Metadata 
   const thumbnail = meta.thumbnail || getMetaThumbnail();
 
   return {
+    metadataBase,
     title: signedTitle,
     description: meta.description,
     openGraph: {
