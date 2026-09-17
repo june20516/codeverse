@@ -1,7 +1,7 @@
 ---
 title: 'Claude Code 워크플로우 스킬을 한국어로 옮긴 포크, suberpower'
 description: 번역이 지시의 힘을 약화하지 않도록
-date: 2026/08/14
+date: 2026/09/04
 tags:
   - Claude Code
   - suberpower
