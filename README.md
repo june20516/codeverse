@@ -5,14 +5,19 @@
 ## Commands
 
 ```shell
+# 초안은 manuscripts/drafts/<slug>.md 에 만들어진다. 같은 slug가 있으면 멈춘다.
 
 # required
 $ yarn write --slug='introduce-mermaid'
 
-#optional
+# optional
 $ yarn write --slug='introduce-mermaid' --title='강력한 차팅 툴 Mermaid'
 
 $ yarn write --slug='introduce-mermaid' --title='강력한 차팅 툴 Mermaid' --description='코딩만큼 쉬운 Diagram 그리기!'
 
-$ yarn write --slug='introduce-mermaid' --title='강력한 차팅 툴 Mermaid' --description='코딩만큼 쉬운 Diagram 그리기!' --date='2024/08/30' --tags='mermaid flowchart diagram graph'
+# tags, categories는 쉼표로 구분한다. date는 yyyy/MM/DD( HH(:mm(:ss))), 생략하면 오늘.
+$ yarn write --slug='introduce-mermaid' --title='강력한 차팅 툴 Mermaid' --description='코딩만큼 쉬운 Diagram 그리기!' --date='2024/08/30' --tags='mermaid,flowchart,diagram graph' --categories='dev,tool'
+
+# test
+$ node --test commands/write.test.js
 ```
