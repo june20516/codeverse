@@ -1,4 +1,5 @@
 import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
+import { getLabItems } from '@/lib/labData';
 import { MetadataRoute } from 'next';
 
 const siteUrl = process.env.HOST_URL;
@@ -52,11 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: buildUrl({ path: 'lab' }),
       lastModified: new Date(),
     },
-    {
-      url: buildUrl({ path: ['lab', 'space-today'] }),
-      lastModified: new Date(),
-    },
   ];
+
+  const labRoutes: MetadataRoute.Sitemap = getLabItems().map(item => ({
+    url: buildUrl({ path: item.path.split('/').filter(Boolean) }),
+    lastModified: new Date(),
+  }));
 
   const posts = getAllPostList();
   const postRoutes: MetadataRoute.Sitemap = posts.map(post => ({
@@ -70,5 +72,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [...staticRoutes, ...postRoutes, ...tagRoutes];
+  return [...staticRoutes, ...labRoutes, ...postRoutes, ...tagRoutes];
 }
