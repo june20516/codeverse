@@ -1,9 +1,10 @@
 ---
-title: "claude-sync를 만든 방식: 테스트 1,269개와 줄어든 검증 시간"
+title: "테스트 1,269개를 쌓으며 배운, 검증을 어디까지 할지 정하는 법"
 description: 로직보다 증명이 오래 걸렸다
 date: 2026/09/17
 tags:
   - Claude Code
+  - claude-sync
   - testing
   - mutation testing
   - TDD
@@ -14,7 +15,7 @@ categories:
 thumbnail: assets/images/posts/thumbnails/claude-sync-how-i-tested.png
 ---
 
-# claude-sync를 만든 방식: 테스트 1,269개와 줄어든 검증 시간
+# 테스트 1,269개를 쌓으며 배운, 검증을 어디까지 할지 정하는 법
 
 [이전 글](/posts/claude-sync-introduce)에서 Claude Code 설정을 기기 간에 동기화하는 플러그인 claude-sync를 소개했다. 이 도구는 남의 기기에서 온 변경을 받아 **로컬 설정 파일을 덮어쓰거나 지운다.** 한 번 잘못 판정하면 다른 기기에서 공들인 설정이 조용히 사라진다. 그래서 "대충 돌아가는" 수준으로는 내놓을 수 없었고, 결과적으로 테스트가 1,269개(v3.1.2 기준)까지 늘었다.
 
