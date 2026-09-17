@@ -66,7 +66,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.meta.date),
   }));
 
-  const tags = getAllTags();
+  // 태그 페이지는 소문자 주소로 생성된다(app/tags/[tag]/page.tsx). 대소문자만 다른 태그는 한 페이지다.
+  const tags = Array.from(new Set(getAllTags().map(tag => tag.toLowerCase())));
   const tagRoutes: MetadataRoute.Sitemap = tags.map(tag => ({
     url: buildUrl({ path: ['tags', tag] }),
     lastModified: new Date(),
