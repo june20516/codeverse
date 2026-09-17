@@ -190,7 +190,7 @@ git pruned-list feat/    # feat/로 시작하는 브랜치만
 pruned-clean = "!~/.git-tools/.git-pruned-clean.sh"
 ```
 
-`pruned-list`로 찾은 브랜치를 실제로 지운다. 이쪽은 **접두사를 반드시 지정**해야 하고, 지울 목록을 보여준 뒤 `y`를 눌러야 삭제한다.
+`pruned-list`로 찾은 브랜치를 실제로 지운다. 삭제는 리스크가 크기 때문에, 어떤 브랜치들을 지울 건지 의사를 더 선명하게 드러내도록 **접두사를 반드시 지정**하게 했다. 지울 목록을 보여준 뒤 `y`를 눌러야 실제로 삭제한다.
 
 ```bash
 git pruned-clean feat/
