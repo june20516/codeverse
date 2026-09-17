@@ -2,11 +2,12 @@ import { getAllTags } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
 import SearchableTagPanel from './components/SearchableTagPanel';
 import { Metadata } from 'next';
-import { getMetaTitle, getMetaThumbnail } from '@/lib/meta';
+import { getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 
 const title = getMetaTitle('Tags');
 const description = '태그로 포스트 찾기';
 export const metadata: Metadata = {
+  metadataBase,
   title,
   description,
   openGraph: {

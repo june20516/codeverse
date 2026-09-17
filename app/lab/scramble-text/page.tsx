@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getMetaTitle, getMetaThumbnail } from '@/lib/meta';
+import { getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 import { getLabItemById } from '@/lib/labData';
 import ScrambleText from './ScrambleText';
 import ScrambleTextContainer from './ScrambleTextContainer';
@@ -7,6 +7,7 @@ import ScrambleTextContainer from './ScrambleTextContainer';
 const labItem = getLabItemById('scramble-text');
 
 export const metadata: Metadata = {
+  metadataBase,
   title: getMetaTitle(labItem?.title || "Bran's Lab"),
   description: labItem?.description || '여러가지 주제로 작업해본 결과물들을 소개합니다',
   openGraph: {

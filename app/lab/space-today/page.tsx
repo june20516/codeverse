@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
-import { getMetaTitle, getMetaThumbnail } from '@/lib/meta';
+import { getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 import { getLabItemById } from '@/lib/labData';
 import SpaceToday from '@/app/components/SpaceToday/SpaceToday';
 
 const labItem = getLabItemById('space-today');
 
 export const metadata: Metadata = {
+  metadataBase,
   title: getMetaTitle(labItem?.title || 'Space Today'),
   description: labItem?.description || 'NASA APOD API를 활용한 우주 사진 갤러리',
   openGraph: {

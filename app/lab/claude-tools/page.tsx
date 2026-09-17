@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { claudeTools, ClaudeToolWithPosts } from '@/lib/claudeToolsData';
 import { getLabItemById } from '@/lib/labData';
-import { getMetaThumbnail, getMetaTitle } from '@/lib/meta';
+import { getMetaThumbnail, getMetaTitle, metadataBase } from '@/lib/meta';
 import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 
 import ClaudeToolsContent from './components/ClaudeToolsContent';
@@ -12,6 +12,7 @@ const title = getMetaTitle(labItem?.title || 'Claude Tools');
 const description = labItem?.description || 'Claude Code를 내 손에 맞게 쓰려고 만든 플러그인 모음';
 
 export const metadata: Metadata = {
+  metadataBase,
   title,
   description,
   openGraph: {
