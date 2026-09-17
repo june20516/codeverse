@@ -1,7 +1,7 @@
 ---
 title: 내가 쓰는 git alias 모음
 description: 깃을 좀 더 편하게 쓰기
-date: 2026/09/17
+date: 2026/05/20
 tags:
   - git
   - alias
@@ -130,10 +130,9 @@ git lg -3
 ```
 
 ```
-* 7b5c71b - (HEAD -> write/my-git-aliases) write: git-publish-alias 초안 (24분 전) <Bran>
-*   a3831a2 - (origin/main, origin/HEAD) Merge pull request #31 from june20516/write/zsh-history-picker-ag (29분 전) <Bran>
-|\
-| * 319783f - (origin/write/zsh-history-picker-ag, write/zsh-history-picker-ag) write: zsh-history-picker-ag 발행 (34분 전) <Bran>
+* 3f2a91c - (HEAD -> feat/login, origin/feat/login) 로그인 화면 추가 (12분 전) <Bran>
+* 8b7e4d2 - 로그인 API 연결 (40분 전) <Bran>
+* c19d0a5 - (origin/main, main) 헤더 레이아웃 수정 (3시간 전) <Bran>
 ```
 
 ### `git recent` — 최근에 작업한 브랜치
@@ -149,9 +148,9 @@ git recent
 ```
 
 ```
-24분 전       write/my-git-aliases                write: git-publish-alias 초안
-34분 전       write/zsh-history-picker-ag         write: zsh-history-picker-ag 발행
-66분 전       write/suberpower-korean-fork        write: suberpower-korean-fork 발행
+12분 전       feat/login                          로그인 화면 추가
+3시간 전     fix/header                          헤더 레이아웃 수정
+2일 전        chore/deps                          의존성 업데이트
 ```
 
 ### `git publish` — 새 브랜치 올리기
