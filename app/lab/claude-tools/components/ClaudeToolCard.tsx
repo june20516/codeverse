@@ -52,14 +52,6 @@ const ClaudeToolCard = ({ tool }: ClaudeToolCardProps) => {
     },
   };
 
-  const sectionLabelStyle = {
-    mb: 1,
-    color: theme.palette.text.tertiary,
-    fontWeight: 500,
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase',
-  };
-
   const relatedPostButtonStyle = {
     justifyContent: 'flex-start',
     textAlign: 'left',
@@ -82,16 +74,27 @@ const ClaudeToolCard = ({ tool }: ClaudeToolCardProps) => {
         </Typography>
       </Box>
 
-      <Typography variant="label" component="p" sx={{ mb: 1 }}>
+      <Typography variant="label" component="p" sx={{ mb: 1, wordBreak: 'keep-all' }}>
         {tool.tagline}
       </Typography>
-      <Typography variant="body2" sx={{ mb: 3, color: theme.palette.text.secondary }}>
+      <Typography
+        variant="body2"
+        sx={{ mb: 3, color: theme.palette.text.secondary, wordBreak: 'keep-all' }}>
         {tool.description}
       </Typography>
 
       <Box
         component="ul"
-        sx={{ listStyle: 'none', p: 0, m: 0, mb: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
+        sx={{
+          listStyle: 'none',
+          p: 0,
+          m: 0,
+          mb: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1,
+          wordBreak: 'keep-all',
+        }}>
         {tool.highlights.map(highlight => (
           <Typography key={highlight} component="li" variant="small" sx={highlightItemStyle}>
             {highlight}
@@ -99,10 +102,7 @@ const ClaudeToolCard = ({ tool }: ClaudeToolCardProps) => {
         ))}
       </Box>
 
-      <Typography variant="micro" component="p" sx={sectionLabelStyle}>
-        Install
-      </Typography>
-      <CopyableCommand commands={tool.installCommands} />
+      <CopyableCommand label="Install" commands={tool.installCommands} />
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 3 }}>
         <Button
