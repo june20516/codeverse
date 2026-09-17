@@ -123,16 +123,24 @@ git aa && git cm -m "로그인 화면 추가"
 lg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 ```
 
-브랜치 흐름을 그래프로 보면서, 한 줄에 해시·브랜치·메시지·시간·작성자를 색으로 구분해 보여준다. 옵션이 길어서 외워 쓰기 어려운 명령의 대표적인 예다. 인자도 그대로 전달되니 개수를 제한할 수 있다.
+브랜치 흐름을 그래프로 보면서, 한 줄에 해시·브랜치·메시지·시간·작성자를 색으로 구분해 보여준다. 옵션이 길어서 외워 쓰기 어려운 명령의 대표적인 예다. 인자도 그대로 전달되니 `git lg -5`처럼 개수를 제한할 수도 있다.
 
 ```bash
-git lg -3
+git lg
 ```
 
 ```
-* 3f2a91c - (HEAD -> feat/login, origin/feat/login) 로그인 화면 추가 (12분 전) <Bran>
-* 8b7e4d2 - 로그인 API 연결 (40분 전) <Bran>
-* c19d0a5 - (origin/main, main) 헤더 레이아웃 수정 (3시간 전) <Bran>
+* cbc8980 - (HEAD -> fix/button, origin/fix/button) 버튼 색상 수정 (12분 전) <Bran>
+*   10b12d3 - (origin/main, main) Merge branch 'feat/login' (2시간 전) <Bran>
+|\
+| * 0ec8586 - (feat/login) 로그인 화면 추가 (4시간 전) <Bran>
+| * e724c75 - 로그인 API 연결 (5시간 전) <Bran>
+|/
+*   0d7baec - Merge branch 'fix/header' (6시간 전) <Bran>
+|\
+| * 3e7ded0 - (fix/header) 헤더 레이아웃 수정 (7시간 전) <Bran>
+|/
+* beabdd0 - 프로젝트 초기 설정 (2일 전) <Bran>
 ```
 
 ### `git recent` — 최근에 작업한 브랜치
@@ -148,9 +156,10 @@ git recent
 ```
 
 ```
-12분 전       feat/login                          로그인 화면 추가
-3시간 전     fix/header                          헤더 레이아웃 수정
-2일 전        chore/deps                          의존성 업데이트
+12분 전       fix/button                          버튼 색상 수정
+2시간 전     main                                Merge branch 'feat/login'
+4시간 전     feat/login                          로그인 화면 추가
+7시간 전     fix/header                          헤더 레이아웃 수정
 ```
 
 ### `git publish` — 새 브랜치 올리기
