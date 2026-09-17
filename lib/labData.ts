@@ -27,6 +27,15 @@ export const labItems: LabItem[] = [
     createdAt: '2026-01-20',
     path: '/lab/scramble-text',
   },
+  {
+    id: 'claude-tools',
+    title: 'Claude Tools',
+    description: 'Claude Code를 내 손에 맞게 쓰려고 만든\n플러그인 모음',
+    thumbnail: '/assets/images/lab/claude-tools.png',
+    features: ['Claude Code', 'plugin', 'open source'],
+    createdAt: '2026-09-17',
+    path: '/lab/claude-tools',
+  },
   // 추가 lab 프로젝트들을 여기에 등록
 ];
 
