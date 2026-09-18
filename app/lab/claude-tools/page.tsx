@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { claudeTools, ClaudeToolWithPosts } from '@/lib/claudeToolsData';
 import { getLabItemById } from '@/lib/labData';
-import { getMetaThumbnail, getMetaTitle, metadataBase } from '@/lib/meta';
+import { buildSiteUrl, getMetaThumbnail, getMetaTitle, metadataBase } from '@/lib/meta';
 import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
 
 import ClaudeToolsContent from './components/ClaudeToolsContent';
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   metadataBase,
   title,
   description,
+  alternates: { canonical: buildSiteUrl(['lab', 'claude-tools']) },
   openGraph: {
     title,
     description,

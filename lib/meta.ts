@@ -6,6 +6,19 @@ import { PostMeta } from '@/interfaces/PostType';
 const SITE_URL = process.env.HOST_URL || 'https://june20516.github.io';
 export const metadataBase = new URL(SITE_URL);
 
+// google search console에서 요구하는 기준을 충족하는 인코딩 함수
+const encodeExtendedRFC3986 = (string: string) =>
+  encodeURIComponent(string).replace(
+    /[!'()*]/g,
+    char =>
+      // 각 문자를 퍼센트 인코딩된 값으로 변환
+      '%' + char.charCodeAt(0).toString(16).toUpperCase(),
+  );
+
+// sitemap의 <loc>과 페이지의 canonical이 한 글자도 다르지 않도록 둘 다 이 함수로 주소를 만든다
+export const buildSiteUrl = (pathSegments: string[] = []) =>
+  [SITE_URL, ...pathSegments.map(encodeExtendedRFC3986)].join('/');
+
 export const getMetaTitle = (title?: string) => {
   return title ? `${title} - Bran's codeverse` : "Bran's codeverse";
 };

@@ -4,7 +4,7 @@ import '@/styles/prism-one-light.css';
 import './styles.css';
 import PostDetail from './PostDetail';
 import { Metadata } from 'next';
-import { generatePostMetadata } from '@/lib/meta';
+import { buildSiteUrl, generatePostMetadata } from '@/lib/meta';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map(postSlug => {
@@ -19,7 +19,10 @@ interface PostProps {
 
 export async function generateMetadata({ params }: PostProps): Promise<Metadata> {
   const post = getPostBySlug({ slug: params.slug });
-  return generatePostMetadata(post.meta);
+  return {
+    ...generatePostMetadata(post.meta),
+    alternates: { canonical: buildSiteUrl(['posts', params.slug]) },
+  };
 }
 
 const Post = async ({ params }: PostProps) => {

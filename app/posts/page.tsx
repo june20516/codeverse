@@ -3,7 +3,7 @@ import { getAllPostList } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
 import PostListItem from './components/PostListItem';
 import { Metadata } from 'next';
-import { getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 
 const title = getMetaTitle('Posts');
 const description = '개발하면서 배운 것들을 기록하고 공유합니다';
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   metadataBase,
   title,
   description,
+  alternates: { canonical: buildSiteUrl(['posts']) },
   openGraph: {
     title,
     description,

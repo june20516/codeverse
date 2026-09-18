@@ -2,7 +2,7 @@ import { getAboutMe } from '@/lib/staticFileApi';
 import AboutDetail from './components/AboutDetail';
 import markdownToHtml from '@/lib/markdownToHTML';
 import { Metadata } from 'next';
-import { getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 
 const title = getMetaTitle('About');
 const description = '저를 소개합니다';
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   metadataBase,
   title,
   description,
+  alternates: { canonical: buildSiteUrl(['about']) },
   openGraph: {
     title,
     description,
