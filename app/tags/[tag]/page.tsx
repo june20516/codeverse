@@ -1,6 +1,7 @@
 import PostListItem from '@/app/posts/components/PostListItem';
+import { buildSiteUrl, getMetaThumbnail, getMetaTitle, metadataBase } from '@/lib/meta';
 import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
-import { NextPage } from 'next';
+import { Metadata, NextPage } from 'next';
 import { ensureDecoded } from '@/utils';
 import ListHeader from './components/ListHeader';
 
@@ -18,18 +19,51 @@ interface TagProps {
   params: { tag: string };
 }
 
-const Tag: NextPage<TagProps> = ({ params }: TagProps) => {
-  const tagParam = ensureDecoded(params.tag).toLowerCase();
-  const tagedPosts = getAllPostList().filter(post =>
-    post.meta.tags?.some(t => t.toLowerCase() === tagParam),
+const getTaggedPosts = (tagParam: string) => {
+  const tag = ensureDecoded(tagParam).toLowerCase();
+  const taggedPosts = getAllPostList().filter(post =>
+    post.meta.tags?.some(t => t.toLowerCase() === tag),
   );
+  const displayTag = taggedPosts[0]?.meta.tags?.find(t => t.toLowerCase() === tag) || tag;
 
-  const displayTag = tagedPosts[0]?.meta.tags?.find(t => t.toLowerCase() === tagParam) || tagParam;
+  return { tag, taggedPosts, displayTag };
+};
+
+export async function generateMetadata({ params }: TagProps): Promise<Metadata> {
+  const { tag, taggedPosts, displayTag } = getTaggedPosts(params.tag);
+  const title = getMetaTitle(displayTag);
+  const description = `${displayTag} 태그가 붙은 글 ${taggedPosts.length}개`;
+
+  return {
+    metadataBase,
+    title,
+    description,
+    alternates: { canonical: buildSiteUrl(['tags', tag]) },
+    openGraph: {
+      title,
+      description,
+      images: [{ url: getMetaThumbnail() }],
+      siteName: "Bran's codeverse",
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [{ url: getMetaThumbnail() }],
+      site: '@codeverse',
+    },
+  };
+}
+
+const Tag: NextPage<TagProps> = ({ params }: TagProps) => {
+  const { taggedPosts, displayTag } = getTaggedPosts(params.tag);
+
   return (
     <>
-      <ListHeader tag={displayTag} count={tagedPosts.length} />
+      <ListHeader tag={displayTag} count={taggedPosts.length} />
       <ol>
-        {tagedPosts.map((post, index) => (
+        {taggedPosts.map((post, index) => (
           <PostListItem key={index} post={post} />
         ))}
       </ol>

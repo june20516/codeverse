@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { Metadata } from 'next';
 import LabContent from './components/LabContent';
-import { getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 
 const title = getMetaTitle('Lab');
 const description = '여러가지 주제로 작업해본 결과물들을 소개합니다';
@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   metadataBase,
   title,
   description,
+  alternates: { canonical: buildSiteUrl(['lab']) },
   openGraph: {
     title,
     description,

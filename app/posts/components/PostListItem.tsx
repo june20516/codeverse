@@ -53,7 +53,7 @@ const PostListItem = ({ post, baseUrl = 'posts' }: PostListItemProps) => {
   };
 
   return (
-    <Link href={`${baseUrl}/${post.slug}`} style={{ textDecoration: 'none' }}>
+    <Link href={`/${baseUrl}/${post.slug}`} style={{ textDecoration: 'none' }}>
       <Box sx={containerStyle}>
         <Box sx={contentWrapperStyle}>
           {/* Thumbnail */}
