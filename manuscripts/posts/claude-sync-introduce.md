@@ -12,6 +12,8 @@ categories:
   - dev
   - tool
 thumbnail: assets/images/posts/thumbnails/claude-sync-introduce.png
+series: claude-sync 개발기
+seriesOrder: 1
 ---
 
 # Claude Code 설정을 기기 간에 동기화하는 플러그인, claude-sync

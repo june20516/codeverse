@@ -1,18 +1,20 @@
 'use client';
 
-import { Post, PostMeta } from '@/interfaces/PostType';
+import { Post, PostMeta, SeriesNavigation } from '@/interfaces/PostType';
 import { Box, Link, Typography, useTheme } from '@mui/material';
 import ArticleContainer from '@/app/components/ArticleContainer';
 import { getMetaThumbnail } from '@/lib/meta';
 import TagToken from '@/app/tags/components/TagToken';
+import { SeriesIndex, SeriesPager } from './SeriesNavigation';
 
 interface PostDetailProps {
   post: Post;
   meta: PostMeta;
   content: string;
+  series?: SeriesNavigation;
 }
 
-const PostDetail = ({ post, meta, content }: PostDetailProps) => {
+const PostDetail = ({ post, meta, content, series }: PostDetailProps) => {
   const theme = useTheme();
   const thumbnail = getMetaThumbnail(meta.thumbnail);
 
@@ -86,8 +88,14 @@ const PostDetail = ({ post, meta, content }: PostDetailProps) => {
           </Typography>
         </Box>
 
+        {/* Series index */}
+        {series && <SeriesIndex series={series} />}
+
         {/* Content */}
         <Box className="markdown-body post" dangerouslySetInnerHTML={{ __html: content }} />
+
+        {/* Series pager */}
+        {series && <SeriesPager series={series} />}
 
         {/* Tags */}
         {meta.tags && meta.tags.length > 0 && (

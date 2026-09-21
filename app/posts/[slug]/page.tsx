@@ -1,4 +1,4 @@
-import { getPostBySlug, getPostSlugs } from '@/lib/staticFileApi';
+import { getPostBySlug, getPostSlugs, getSeriesNavigation } from '@/lib/staticFileApi';
 import markdownToHtml from '@/lib/markdownToHTML';
 import '@/styles/prism-one-light.css';
 import './styles.css';
@@ -29,8 +29,9 @@ const Post = async ({ params }: PostProps) => {
   const post = getPostBySlug({ slug: params.slug });
   const content = await markdownToHtml(post.content || '');
   const meta = post.meta;
+  const series = getSeriesNavigation(post);
 
-  return <PostDetail post={post} meta={meta} content={content} />;
+  return <PostDetail post={post} meta={meta} content={content} series={series} />;
 };
 
 export default Post;

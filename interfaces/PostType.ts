@@ -6,6 +6,8 @@ export interface PostMeta {
   description?: string;
   cardImage: string;
   tags?: string[];
+  series?: string;
+  seriesOrder?: number;
 }
 
 export interface PostSummary {
@@ -16,4 +18,18 @@ export interface PostSummary {
 export interface Post extends PostSummary {
   content: string;
   lastmod?: string;
+}
+
+export interface SeriesEntry {
+  slug: string;
+  title: string;
+  order: number;
+  isCurrent: boolean;
+}
+
+export interface SeriesNavigation {
+  name: string;
+  entries: SeriesEntry[];
+  previous?: SeriesEntry;
+  next?: SeriesEntry;
 }

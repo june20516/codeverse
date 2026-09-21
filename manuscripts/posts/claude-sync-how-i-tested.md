@@ -13,6 +13,8 @@ categories:
   - dev
   - testing
 thumbnail: assets/images/posts/thumbnails/claude-sync-how-i-tested.png
+series: claude-sync 개발기
+seriesOrder: 2
 ---
 
 # 테스트 1,269개를 쌓으며 배운, 검증을 어디까지 할지 정하는 법
