@@ -40,7 +40,15 @@ export const SeriesIndex = ({ series }: SeriesProps) => {
           {currentPosition} / {series.entries.length}
         </Typography>
       </Box>
-      <Box component="ol" sx={{ m: 0, pl: 3, '& > li + li': { mt: 0.5 } }}>
+      <Box
+        component="ol"
+        sx={{
+          m: 0,
+          pl: 3,
+          listStyleType: 'decimal',
+          '& > li::marker': { color: 'text.tertiary' },
+          '& > li + li': { mt: 0.5 },
+        }}>
         {series.entries.map(entry => (
           <Typography
             key={entry.slug}
