@@ -1,8 +1,10 @@
 'use client';
 
 import { Box, Typography } from '@mui/material';
-import TagToken from '../../components/TagToken';
+
 import { pxToRem } from '@/styles/theme';
+
+import TagToken from '../../components/TagToken';
 
 const ListHeader = ({ tag, count }: { tag: string; count: number }) => (
   <Box sx={{ display: 'flex' }}>

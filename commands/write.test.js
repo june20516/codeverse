@@ -92,7 +92,11 @@ test('buildPostTemplate: 기존 글과 같은 frontmatter와 H1 본문을 만든
 });
 
 test('buildPostTemplate: 공백이 든 태그를 하나로 유지한다', () => {
-  const template = buildPostTemplate({ slug: 'a', date: '2026/09/17', tags: 'React Native, VS Code' });
+  const template = buildPostTemplate({
+    slug: 'a',
+    date: '2026/09/17',
+    tags: 'React Native, VS Code',
+  });
   assert.match(template, /\ntags:\n {2}- React Native\n {2}- VS Code\n/);
 });
 

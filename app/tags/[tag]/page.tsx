@@ -1,8 +1,10 @@
+import { Metadata, NextPage } from 'next';
+
 import PostListItem from '@/app/posts/components/PostListItem';
 import { buildSiteUrl, getMetaThumbnail, getMetaTitle, metadataBase } from '@/lib/meta';
 import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
-import { Metadata, NextPage } from 'next';
 import { ensureDecoded } from '@/utils';
+
 import ListHeader from './components/ListHeader';
 
 export async function generateStaticParams() {

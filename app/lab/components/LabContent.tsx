@@ -1,8 +1,10 @@
 'use client';
 
-import { getLabItems } from '@/lib/labData';
-import LabListItem from './LabListItem';
 import { Box } from '@mui/material';
+
+import { getLabItems } from '@/lib/labData';
+
+import LabListItem from './LabListItem';
 
 const LabContent = () => {
   const labItems = getLabItems();
@@ -22,7 +24,7 @@ const LabContent = () => {
 
   return (
     <Box component="ul" sx={gridStyle}>
-      {labItems.map((item) => (
+      {labItems.map(item => (
         <Box component="li" key={item.id}>
           <LabListItem item={item} />
         </Box>

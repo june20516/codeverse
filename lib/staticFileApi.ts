@@ -1,7 +1,9 @@
 // blog-starter/lib/api.ts
 import fs from 'fs';
 import { join } from 'path';
+
 import matter from 'gray-matter';
+
 import { Post, SeriesEntry, SeriesNavigation } from '@/interfaces/PostType';
 import { flat, uniq } from '@/utils';
 

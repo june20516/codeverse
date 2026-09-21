@@ -28,7 +28,7 @@ export const ensureDecoded = (inputString: string) => {
     } else {
       return inputString;
     }
-  } catch (e) {
+  } catch {
     return inputString;
   }
 };

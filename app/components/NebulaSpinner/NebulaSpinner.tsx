@@ -1,4 +1,3 @@
-import { FunctionComponent, useEffect, useState } from 'react';
 import NebulaDisk from './NebulaDisk';
 
 const NebulaSpinner = () => {

@@ -1,5 +1,7 @@
-import { getDateStringYyyymmdd } from '@/utils';
 import { create } from 'zustand';
+
+import { getDateStringYyyymmdd } from '@/utils';
+
 import { APODProps } from '../components/SpaceToday/SpaceToday';
 
 interface APODStoreProps {

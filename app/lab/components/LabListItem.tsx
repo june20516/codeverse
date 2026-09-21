@@ -1,8 +1,9 @@
 'use client';
 
-import { LabItem } from '@/lib/labData';
 import { Box, Typography, useTheme } from '@mui/material';
 import Link from 'next/link';
+
+import { LabItem } from '@/lib/labData';
 import { getMetaThumbnail } from '@/lib/meta';
 
 interface LabListItemProps {

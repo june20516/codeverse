@@ -23,4 +23,9 @@ $ node --test commands/write.test.js
 
 # 빌드 결과물(out/)의 링크·canonical·title·sitemap lastmod 검사. 빌드한 뒤에 실행한다.
 $ yarn build && node --test tests/build-output.test.js
+
+# lint, format
+$ yarn lint
+$ yarn format:check
+$ yarn format
 ```

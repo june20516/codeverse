@@ -1,10 +1,12 @@
 'use client';
 
-import { Post, PostMeta, SeriesNavigation } from '@/interfaces/PostType';
 import { Box, Link, Typography, useTheme } from '@mui/material';
+
 import ArticleContainer from '@/app/components/ArticleContainer';
-import { getMetaThumbnail } from '@/lib/meta';
 import TagToken from '@/app/tags/components/TagToken';
+import { Post, PostMeta, SeriesNavigation } from '@/interfaces/PostType';
+import { getMetaThumbnail } from '@/lib/meta';
+
 import { SeriesIndex, SeriesPager } from './SeriesNavigation';
 
 interface PostDetailProps {

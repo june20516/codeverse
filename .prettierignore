@@ -1,0 +1,11 @@
+# 빌드 결과물
+out/
+.next/
+
+# 정적 자원과 글 원고는 포맷하지 않는다
+public/
+manuscripts/
+docs/
+
+yarn.lock
+tsconfig.tsbuildinfo

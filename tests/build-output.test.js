@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { test } = require('node:test');
 const { isDeepStrictEqual } = require('node:util');
+
 const matter = require('gray-matter');
 
 const OUT_DIRECTORY = path.join(__dirname, '..', 'out');

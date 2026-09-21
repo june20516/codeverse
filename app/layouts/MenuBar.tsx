@@ -35,7 +35,9 @@ export default function MenuBar({ menuList }: { menuList: { name: string; href: 
               <Box
                 sx={{
                   py: 2,
-                  borderBottom: active ? `2px solid ${theme.palette.primary.main}` : '2px solid transparent',
+                  borderBottom: active
+                    ? `2px solid ${theme.palette.primary.main}`
+                    : '2px solid transparent',
                   transition: 'all 0.2s ease',
                 }}>
                 <Typography

@@ -1,8 +1,10 @@
-import { getAboutMe } from '@/lib/staticFileApi';
-import AboutDetail from './components/AboutDetail';
-import markdownToHtml from '@/lib/markdownToHTML';
 import { Metadata } from 'next';
+
+import markdownToHtml from '@/lib/markdownToHTML';
 import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+import { getAboutMe } from '@/lib/staticFileApi';
+
+import AboutDetail from './components/AboutDetail';
 
 const title = getMetaTitle('About');
 const description = '저를 소개합니다';
