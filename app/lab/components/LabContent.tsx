@@ -22,7 +22,7 @@ const LabContent = () => {
 
   return (
     <Box component="ul" sx={gridStyle}>
-      {labItems.map((item) => (
+      {labItems.map(item => (
         <Box component="li" key={item.id}>
           <LabListItem item={item} />
         </Box>

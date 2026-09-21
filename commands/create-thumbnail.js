@@ -17,17 +17,13 @@ async function createThumbnail(inputPath, outputPath) {
 
     // 높이를 630으로 맞추기
     const resizedWidth = Math.round((metadata.width * TARGET_HEIGHT) / metadata.height);
-    const resized = await image
-      .resize({ height: TARGET_HEIGHT })
-      .toBuffer();
+    const resized = await image.resize({ height: TARGET_HEIGHT }).toBuffer();
 
     console.log(`리사이즈: ${resizedWidth}x${TARGET_HEIGHT}`);
 
     if (resizedWidth >= TARGET_WIDTH) {
       // 이미 충분히 넓으면 crop
-      await sharp(resized)
-        .resize(TARGET_WIDTH, TARGET_HEIGHT, { fit: 'cover' })
-        .toFile(outputPath);
+      await sharp(resized).resize(TARGET_WIDTH, TARGET_HEIGHT, { fit: 'cover' }).toFile(outputPath);
       console.log(`완료: ${outputPath} (crop)`);
     } else {
       // 좌우 확장 필요
@@ -41,7 +37,9 @@ async function createThumbnail(inputPath, outputPath) {
       const sampleWidth = Math.min(10, Math.floor(info.width / 4)); // 최대 10px, 이미지가 작으면 비율에 맞게
 
       // 왼쪽 가장자리 색상 (왼쪽 sampleWidth 픽셀의 평균)
-      let leftR = 0, leftG = 0, leftB = 0;
+      let leftR = 0,
+        leftG = 0,
+        leftB = 0;
       let leftCount = 0;
       for (let y = 0; y < info.height; y++) {
         for (let x = 0; x < sampleWidth; x++) {
@@ -57,7 +55,9 @@ async function createThumbnail(inputPath, outputPath) {
       leftB = Math.round(leftB / leftCount);
 
       // 오른쪽 가장자리 색상 (오른쪽 sampleWidth 픽셀의 평균)
-      let rightR = 0, rightG = 0, rightB = 0;
+      let rightR = 0,
+        rightG = 0,
+        rightB = 0;
       let rightCount = 0;
       for (let y = 0; y < info.height; y++) {
         for (let x = info.width - sampleWidth; x < info.width; x++) {
@@ -83,7 +83,7 @@ async function createThumbnail(inputPath, outputPath) {
           bottom: 0,
           left: extendLeft,
           right: 0,
-          background: { r: leftR, g: leftG, b: leftB }
+          background: { r: leftR, g: leftG, b: leftB },
         })
         .toBuffer();
 
@@ -94,7 +94,7 @@ async function createThumbnail(inputPath, outputPath) {
           bottom: 0,
           left: 0,
           right: extendRight,
-          background: { r: rightR, g: rightG, b: rightB }
+          background: { r: rightR, g: rightG, b: rightB },
         })
         .toFile(outputPath);
 
@@ -110,7 +110,9 @@ async function createThumbnail(inputPath, outputPath) {
 const args = process.argv.slice(2);
 if (args.length < 1) {
   console.log('사용법: node scripts/create-thumbnail.js <입력이미지> [출력이미지]');
-  console.log('예시: node scripts/create-thumbnail.js ~/Downloads/image.png public/assets/images/thumbnail.png');
+  console.log(
+    '예시: node scripts/create-thumbnail.js ~/Downloads/image.png public/assets/images/thumbnail.png',
+  );
   process.exit(1);
 }
 

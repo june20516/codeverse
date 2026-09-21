@@ -30,7 +30,9 @@ const isExistingDate = (year, month, day) => {
 
 const formatDate = (dateString, now = new Date()) => {
   if (!dateString) {
-    return `${now.getFullYear()}/${padTwoDigits(now.getMonth() + 1)}/${padTwoDigits(now.getDate())}`;
+    return `${now.getFullYear()}/${padTwoDigits(now.getMonth() + 1)}/${padTwoDigits(
+      now.getDate(),
+    )}`;
   }
 
   const match = dateString.match(DATE_PATTERN);

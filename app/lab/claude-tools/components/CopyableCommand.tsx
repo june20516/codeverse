@@ -82,8 +82,16 @@ const CopyableCommand = ({ label, commands }: CopyableCommandProps) => {
           {label}
         </Typography>
         <Tooltip title={isCopied ? '복사됨' : '복사'} placement="top">
-          <IconButton aria-label={`${label} 명령 복사`} size="small" onClick={handleCopy} sx={copyButtonStyle}>
-            {isCopied ? <CheckRoundedIcon fontSize="small" /> : <ContentCopyRoundedIcon fontSize="small" />}
+          <IconButton
+            aria-label={`${label} 명령 복사`}
+            size="small"
+            onClick={handleCopy}
+            sx={copyButtonStyle}>
+            {isCopied ? (
+              <CheckRoundedIcon fontSize="small" />
+            ) : (
+              <ContentCopyRoundedIcon fontSize="small" />
+            )}
           </IconButton>
         </Tooltip>
       </Box>
