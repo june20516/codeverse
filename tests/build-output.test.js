@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { test } = require('node:test');
+const { isDeepStrictEqual } = require('node:util');
 const matter = require('gray-matter');
 
 const OUT_DIRECTORY = path.join(__dirname, '..', 'out');
@@ -58,6 +59,8 @@ const readPosts = () =>
         slug: fileName.replace(/\.md$/, ''),
         date: new Date(data.date).toISOString(),
         tags: (data.tags || []).map(tag => tag.toLowerCase()),
+        series: data.series,
+        seriesOrder: data.seriesOrder,
       };
     });
 
@@ -66,6 +69,36 @@ const newestDate = posts =>
     .map(post => post.date)
     .sort()
     .at(-1);
+
+const SERIES_INDEX_LABEL = '시리즈 목차';
+const SERIES_PAGER_LABEL = '시리즈 이전·다음 편';
+
+const toPostPath = post => `/posts/${post.slug}`;
+
+const readPostHtml = slug =>
+  fs.readFileSync(path.join(OUT_DIRECTORY, 'posts', `${slug}.html`), 'utf8');
+
+// aria-label로 nav를 찾아 그 안의 링크 주소를 순서대로 돌려준다. nav가 없으면 undefined
+const extractNavLinks = (html, label) => {
+  const navHtml = html.match(
+    new RegExp(`<nav[^>]*aria-label="${label}"[^>]*>([\\s\\S]*?)</nav>`),
+  )?.[1];
+  if (navHtml === undefined) return undefined;
+  return [...navHtml.matchAll(/<a\s[^>]*?href="([^"]*)"/g)].map(([, href]) =>
+    decodeURIComponent(href),
+  );
+};
+
+// 같은 series 값을 가진 글끼리 묶고, 각 묶음을 seriesOrder 순으로 정렬한다
+const groupBySeries = posts => {
+  const seriesMap = new Map();
+  posts
+    .filter(post => post.series)
+    .forEach(post => seriesMap.set(post.series, [...(seriesMap.get(post.series) || []), post]));
+  return [...seriesMap.values()].map(seriesPosts =>
+    [...seriesPosts].sort((post1, post2) => post1.seriesOrder - post2.seriesOrder),
+  );
+};
 
 test('모든 내부 링크는 그 링크가 있는 페이지에서 눌러도 실제 있는 페이지로 이어진다', () => {
   const brokenLinks = listHtmlFiles(OUT_DIRECTORY).flatMap(htmlFilePath => {
@@ -125,4 +158,51 @@ test('sitemap의 lastmod는 빌드 시각이 아니라 글 발행일에서 나�
   });
 
   assert.deepEqual(mismatches, []);
+});
+
+test('시리즈 글의 목차는 같은 시리즈의 다른 글로 순서대로 이어진다', () => {
+  const seriesList = groupBySeries(readPosts());
+  assert.ok(seriesList.length > 0, '시리즈로 묶인 글이 없어 검증할 수 없다');
+
+  const mismatches = seriesList.flatMap(seriesPosts =>
+    seriesPosts.flatMap(post => {
+      const expected = seriesPosts.filter(other => other.slug !== post.slug).map(toPostPath);
+      const actual = extractNavLinks(readPostHtml(post.slug), SERIES_INDEX_LABEL);
+      return isDeepStrictEqual(actual, expected)
+        ? []
+        : [`${post.slug} (expected: ${expected}, actual: ${actual})`];
+    }),
+  );
+
+  assert.deepEqual(mismatches, []);
+});
+
+test('시리즈 글의 이전·다음 편 링크는 바로 앞뒤 편을 가리킨다', () => {
+  const mismatches = groupBySeries(readPosts()).flatMap(seriesPosts =>
+    seriesPosts.flatMap((post, index) => {
+      const expected = [seriesPosts[index - 1], seriesPosts[index + 1]]
+        .filter(Boolean)
+        .map(toPostPath);
+      const actual = extractNavLinks(readPostHtml(post.slug), SERIES_PAGER_LABEL) ?? [];
+      return isDeepStrictEqual(actual, expected)
+        ? []
+        : [`${post.slug} (expected: ${expected}, actual: ${actual})`];
+    }),
+  );
+
+  assert.deepEqual(mismatches, []);
+});
+
+test('시리즈가 없는 글에는 시리즈 탐색이 없다', () => {
+  const postsWithSeriesNav = readPosts()
+    .filter(post => !post.series)
+    .filter(post => {
+      const html = readPostHtml(post.slug);
+      return [SERIES_INDEX_LABEL, SERIES_PAGER_LABEL].some(
+        label => extractNavLinks(html, label) !== undefined,
+      );
+    })
+    .map(post => post.slug);
+
+  assert.deepEqual(postsWithSeriesNav, []);
 });
