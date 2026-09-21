@@ -6,13 +6,13 @@ import { Box, ThemeProvider } from '@mui/material';
 import Script from 'next/script';
 import { Suspense, useRef } from 'react';
 
+import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 import theme from '@/styles/theme';
 
+import GlobalCssVariables from './components/GlobalCssVariables';
 import GtagNavigationEvents from './components/GtagNavigationEvents';
 import Header from './components/Header';
 import { useTrackScrollPositions } from './hooks/useTrackScrollPositions';
-import GlobalCssVariables from './components/GlobalCssVariables';
-import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 
 const sideBarMenu = [
   { name: 'Posts', href: '/posts' },

@@ -1,9 +1,11 @@
-import { PostSummary } from '@/interfaces/PostType';
-import { getAllPostList } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
-import PostListItem from './components/PostListItem';
 import { Metadata } from 'next';
+
+import { PostSummary } from '@/interfaces/PostType';
 import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+import { getAllPostList } from '@/lib/staticFileApi';
+
+import PostListItem from './components/PostListItem';
 
 const title = getMetaTitle('Posts');
 const description = '개발하면서 배운 것들을 기록하고 공유합니다';

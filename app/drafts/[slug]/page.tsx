@@ -1,10 +1,12 @@
-import { getPostBySlug, getPostSlugs, getSeriesNavigation } from '@/lib/staticFileApi';
+import { Metadata } from 'next';
+
+import PostDetail from '@/app/posts/[slug]/PostDetail';
 import markdownToHtml from '@/lib/markdownToHTML';
+import { generatePostMetadata } from '@/lib/meta';
+import { getPostBySlug, getPostSlugs, getSeriesNavigation } from '@/lib/staticFileApi';
+
 import '@/styles/prism-one-light.css';
 import '@/app/posts/[slug]/styles.css';
-import PostDetail from '@/app/posts/[slug]/PostDetail';
-import { Metadata } from 'next';
-import { generatePostMetadata } from '@/lib/meta';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs({ isDraft: true }).map(postSlug => {

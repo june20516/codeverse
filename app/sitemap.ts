@@ -1,8 +1,9 @@
+import { MetadataRoute } from 'next';
+
 import { Post } from '@/interfaces/PostType';
 import { getLabItems } from '@/lib/labData';
 import { buildSiteUrl } from '@/lib/meta';
 import { getAllPostList, getAllTags } from '@/lib/staticFileApi';
-import { MetadataRoute } from 'next';
 
 // 글 목록은 최신순으로 정렬되어 있어 첫 글의 발행일이 가장 최근 날짜다
 const getNewestPostDate = (posts: Post[]) => (posts[0] ? new Date(posts[0].meta.date) : undefined);

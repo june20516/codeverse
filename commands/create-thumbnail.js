@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const sharp = require('sharp');
 const fs = require('fs');
-const path = require('path');
+
+const sharp = require('sharp');
 
 const TARGET_WIDTH = 1200;
 const TARGET_HEIGHT = 630;

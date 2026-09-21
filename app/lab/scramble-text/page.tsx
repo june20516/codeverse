@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
-import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+
 import { getLabItemById } from '@/lib/labData';
-import ScrambleText from './ScrambleText';
+import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+
 import ScrambleTextContainer from './ScrambleTextContainer';
 
 const labItem = getLabItemById('scramble-text');

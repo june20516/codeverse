@@ -1,8 +1,9 @@
 'use client';
 
-import { PostSummary } from '@/interfaces/PostType';
 import { Box, Typography, useTheme } from '@mui/material';
 import Link from 'next/link';
+
+import { PostSummary } from '@/interfaces/PostType';
 import { getMetaThumbnail } from '@/lib/meta';
 
 interface PostListItemProps {

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import { PostMeta } from '@/interfaces/PostType';
 
 // og:image·twitter:image의 상대 경로를 절대 URL로 바꾸는 기준 주소.

@@ -1,5 +1,6 @@
-import theme from '@/styles/theme';
 import { GlobalStyles } from '@mui/material';
+
+import theme from '@/styles/theme';
 
 const GlobalCssVariables = () => {
   return (

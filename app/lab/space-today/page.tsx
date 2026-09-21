@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
-import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
-import { getLabItemById } from '@/lib/labData';
+
 import SpaceToday from '@/app/components/SpaceToday/SpaceToday';
+import { getLabItemById } from '@/lib/labData';
+import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
 
 const labItem = getLabItemById('space-today');
 

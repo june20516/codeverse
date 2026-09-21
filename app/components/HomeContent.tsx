@@ -2,6 +2,7 @@
 
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material';
+
 import ArticleContainer from './ArticleContainer';
 
 const HomeContent = () => {

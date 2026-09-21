@@ -1,7 +1,8 @@
+import { NextPage } from 'next';
+
+import PostListItem from '@/app/posts/components/PostListItem';
 import { PostSummary } from '@/interfaces/PostType';
 import { getAllDraftList } from '@/lib/staticFileApi';
-import { NextPage } from 'next';
-import PostListItem from '@/app/posts/components/PostListItem';
 
 const Posts: NextPage = () => {
   const posts: PostSummary[] = getAllDraftList();

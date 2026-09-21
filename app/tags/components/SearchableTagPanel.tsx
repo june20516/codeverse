@@ -1,9 +1,10 @@
 'use client';
 
+import { Box, Input } from '@mui/material';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+
 import TagToken from './TagToken';
-import { Box, Input } from '@mui/material';
 
 const SearchableTagPanel = ({ tags }: { tags: string[] }) => {
   const [keyword, setKeyword] = useState('');

@@ -1,8 +1,10 @@
-import { getAllTags } from '@/lib/staticFileApi';
 import { NextPage } from 'next';
-import SearchableTagPanel from './components/SearchableTagPanel';
 import { Metadata } from 'next';
+
 import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+import { getAllTags } from '@/lib/staticFileApi';
+
+import SearchableTagPanel from './components/SearchableTagPanel';
 
 const title = getMetaTitle('Tags');
 const description = '태그로 포스트 찾기';

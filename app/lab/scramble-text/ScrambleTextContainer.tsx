@@ -1,8 +1,10 @@
 'use client';
-import ScrambleText from './ScrambleText';
 import { Box, Input, CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
+
 import { useDebounceWithProgress } from '@/app/hooks/useDebounceWithProgress';
+
+import ScrambleText from './ScrambleText';
 
 const ScrambleTextContainer = () => {
   const [inputValue, setInputValue] = useState('');

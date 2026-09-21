@@ -1,7 +1,9 @@
 import { NextPage } from 'next';
 import { Metadata } from 'next';
-import HomeContent from './components/HomeContent';
+
 import { buildSiteUrl, getMetaTitle, getMetaThumbnail, metadataBase } from '@/lib/meta';
+
+import HomeContent from './components/HomeContent';
 
 const title = getMetaTitle();
 const description = '개발하면서 배운 것들을 기록하고 공유하는 공간입니다';

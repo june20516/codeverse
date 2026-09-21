@@ -1,8 +1,10 @@
 'use client';
 
-import { getLabItems } from '@/lib/labData';
-import LabListItem from './LabListItem';
 import { Box } from '@mui/material';
+
+import { getLabItems } from '@/lib/labData';
+
+import LabListItem from './LabListItem';
 
 const LabContent = () => {
   const labItems = getLabItems();

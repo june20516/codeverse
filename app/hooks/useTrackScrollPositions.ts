@@ -1,4 +1,5 @@
 import { RefObject, useEffect } from 'react';
+
 import { useScrollStore } from '../stores/scroll';
 
 export const useTrackScrollPositions = (containerRef: RefObject<HTMLElement>) => {

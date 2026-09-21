@@ -1,8 +1,9 @@
 'use client';
 
-import { pageview } from '@/lib/gtag';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
+
+import { pageview } from '@/lib/gtag';
 
 export default function GtagNavigationEvents() {
   const pathname = usePathname();
