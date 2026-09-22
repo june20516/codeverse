@@ -31,7 +31,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <head>
           <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/june20516/orbithall@widget/v1.1.1/static/embed.css"
+            href="https://cdn.jsdelivr.net/gh/june20516/orbithall@1.1.1/static/embed.css"
           />
         </head>
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
@@ -52,7 +52,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           }}
         />
         <Script
-          src="https://cdn.jsdelivr.net/gh/june20516/orbithall@widget/v1.1.1/static/embed.js"
+          src="https://cdn.jsdelivr.net/gh/june20516/orbithall@1.1.1/static/embed.js"
           onLoad={() => {
             if (window.OrbitHall && process.env.NEXT_PUBLIC_ORBITHALL_API_KEY) {
               window.OrbitHall.init({

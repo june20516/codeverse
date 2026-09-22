@@ -57,8 +57,8 @@ orbithall은 네 부분으로 이루어져 있다.
 ```html
 <div data-orb-container data-widget-type="comments" data-post-slug="orbithall-introduce"></div>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/june20516/orbithall@widget/v1.1.1/static/embed.css" />
-<script src="https://cdn.jsdelivr.net/gh/june20516/orbithall@widget/v1.1.1/static/embed.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/june20516/orbithall@1.1.1/static/embed.css" />
+<script src="https://cdn.jsdelivr.net/gh/june20516/orbithall@1.1.1/static/embed.js"></script>
 <script>
   OrbitHall.init({ apiKey: '<사이트 API 키>' });
 </script>
