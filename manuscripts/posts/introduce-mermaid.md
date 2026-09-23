@@ -1,6 +1,6 @@
 ---
 title: Mermaid - Markdown에서 다이어그램 그리기
-date: 2024/08/1
+date: 2024/08/1 18:22
 tags:
   - mermaid
   - flowchart

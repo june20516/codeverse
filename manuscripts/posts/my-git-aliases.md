@@ -1,7 +1,7 @@
 ---
 title: 내가 쓰는 git alias 모음
 description: 깃을 좀 더 편하게 쓰기
-date: 2026/05/20
+date: 2026/05/20 17:34
 tags:
   - git
   - alias

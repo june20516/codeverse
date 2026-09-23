@@ -1,6 +1,6 @@
 ---
 title: mysql dockerize(1) - 도커로 mysql container 띄우기
-date: 2021/11/07
+date: 2021/11/07 15:32
 description: 로컬 환경을 안전하게 보호하기 위해 MySQL을 도커로 격리하여 실행하는 과정을 기록한다.
 tags:
   - MYSQL_ALLOW_EMPTY_PASSWORD

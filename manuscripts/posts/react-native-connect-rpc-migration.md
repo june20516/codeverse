@@ -1,7 +1,7 @@
 ---
 title: React Native에서 REST API를 Connect RPC로 마이그레이션하기
 description: axios를 버리고 타입 안전한 gRPC 세상으로
-date: 2026/01/05
+date: 2026/01/05 17:04
 tags:
   - React Native
   - Connect RPC

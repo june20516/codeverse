@@ -1,7 +1,7 @@
 ---
 title: 'Claude Code 설정을 기기 간에 동기화하는 플러그인, claude-sync'
 description: 어느 기기에서 열어도 같은 Claude로
-date: 2026/09/02
+date: 2026/09/02 18:28
 tags:
   - Claude Code
   - plugin

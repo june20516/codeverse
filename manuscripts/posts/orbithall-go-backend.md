@@ -1,7 +1,7 @@
 ---
 title: '처음 써 본 Go로 댓글 서비스의 뼈대를 세우다'
 description: 틀이 정해진 언어와 흔적을 남기지 않는 테스트
-date: 2026/09/22
+date: 2026/09/22 19:35
 tags:
   - orbithall
   - Go

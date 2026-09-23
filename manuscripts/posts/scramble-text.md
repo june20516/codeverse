@@ -1,7 +1,7 @@
 ---
 title: 유니코드 범위를 활용한 텍스트 스크램블 효과 구현하기
 description: 드르르륵 - 차칵
-date: 2026/01/20
+date: 2026/01/20 19:09
 tags:
   - typescript
   - components
