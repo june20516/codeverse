@@ -1,7 +1,7 @@
 ---
 title: macOS GUI 앱에서 nvm Node를 인식하지 못하는 문제 해결하기
 description: VS Code 익스텐션이 Node를 찾지 못할 때
-date: 2025/01/16
+date: 2025/01/16 20:23
 tags:
   - macOS
   - nvm

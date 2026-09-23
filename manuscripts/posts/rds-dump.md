@@ -1,7 +1,7 @@
 ---
 title: AWS RDS의 Data base를 dump하기
 description: VPC 내부에 있는 RDS에서 데이터베이스를 덤프하고, 이를 로컬 MySQL로 복구하는 과정에서 겪은 문제들을 기록한다.
-date: 2021/09/14
+date: 2021/09/14 17:52
 tags:
   - COLUMN_STATISTICS
   - NO_AUTO_CREATE_USER

@@ -1,7 +1,7 @@
 ---
 title: '블로그에 붙이려고 직접 만든 댓글 서비스, orbithall'
 description: 글이라는 행성 곁에 궤도 하나
-date: 2026/09/21
+date: 2026/09/21 19:55
 tags:
   - orbithall
   - 댓글

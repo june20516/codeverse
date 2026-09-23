@@ -1,7 +1,7 @@
 ---
 title: macOS에서 Slack 링크를 원하는 Chrome 프로필로 열기 (Finicky 사용)
 description: 크롬을 조금 더 스마트하게 써보자
-date: 2024/12/13
+date: 2024/12/13 20:25
 tags:
   - finicky
   - chrome

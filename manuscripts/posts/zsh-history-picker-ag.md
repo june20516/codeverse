@@ -1,7 +1,7 @@
 ---
 title: 'fzf로 셸 히스토리 다시 꺼내 쓰기, ag'
 description: '그 명령, 뭐였더라'
-date: 2026/02/06
+date: 2026/02/06 18:50
 tags:
   - zsh
   - fzf

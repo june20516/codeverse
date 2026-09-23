@@ -1,6 +1,6 @@
 ---
 title: SVG 그려보기
-date: 2024/10/1
+date: 2024/10/1 17:40
 tags:
   - svg
   - path

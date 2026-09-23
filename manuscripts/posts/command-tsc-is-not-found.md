@@ -1,6 +1,6 @@
 ---
 title: Command 'tsc' is not found
-date: 2021/10/01
+date: 2021/10/01 18:43
 tags:
   - NestJS
   - Node

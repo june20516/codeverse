@@ -1,7 +1,7 @@
 ---
 title: HTMLCollection의 함정
 description: 클래스를 기준으로 스크립트를 작성하다가 맞닥트린 예상치 못한 문제
-date: 2021/09/07
+date: 2021/09/07 20:29
 tags:
   - HTMLCollection
   - getElementsByClassName

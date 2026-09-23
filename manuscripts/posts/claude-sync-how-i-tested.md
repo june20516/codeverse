@@ -1,7 +1,7 @@
 ---
 title: '테스트 1,269개를 쌓으며 배운, 검증을 어디까지 할지 정하는 법'
 description: 로직보다 증명이 오래 걸렸다
-date: 2026/09/03
+date: 2026/09/03 18:12
 tags:
   - Claude Code
   - claude-sync
